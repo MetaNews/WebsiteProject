@@ -1,0 +1,31 @@
+body {
+	padding-top: 70px;
+}
+
+.navbar-custom {
+	padding-top: 35px;
+	margin-left: 50px;
+	margin-right: 50px;
+	background: rgba(255, 255, 255, 1.0);
+	
+}
+
+.navbar-custom li a{
+	color: black;
+}
+
+#sidebar {
+
+}
+
+#sidebar li a{
+	
+}
+
+
+#top-wrapper {
+}
+
+#sidebar-wrapper {
+	margin-left: -70px;
+}
