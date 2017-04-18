@@ -6,6 +6,8 @@ body {
 
 #menu {
 	padding-right: 20px;
+	max-height: 51px;
+	overflow: hidden;
 }
 
 #sidebar {
@@ -39,10 +41,13 @@ body {
 	border: 1px solid grey;
 	margin: 5px;
 	height: 100px;
+	border-radius: 6px;
+	white-space: nowrap;
+	overflow: hidden;
 
 }
 
-#arrow-box {
+.arrow-box {
 	position: relative;
 	padding: 20px;
 	width: 100px;
@@ -52,20 +57,35 @@ body {
 	
 }
 
-#left-arrow {
+.left-arrow {
 	position: absolute;
 	top: 40%;
 	left: 22px;
 }
 
-#right-arrow {
+.left-arrow .glyphicon {
+	color: grey;
+}
+
+.left-arrow a:hover span {
+	color: blue;
+}
+
+.right-arrow {
 	position: absolute;
 	top: 40%;
 	left: 61px;
-
 }
 
-#up-down-arrows {
+.right-arrow .glyphicon {
+	color: grey;
+}
+
+.right-arrow a:hover span {
+	color: red;
+}
+
+.up-down-arrows {
 	position: absolute;
 	text-align: center;
 	list-style: none;
@@ -74,37 +94,58 @@ body {
 	top: 20px;
 }
 
-#article-box {
+.up-down-arrows .glyphicon {
+	color: grey;
+}
+
+.up-down-arrows a:hover .glyphicon-chevron-up {
+	color: #5cb85c;
+}
+
+.up-down-arrows a:hover .glyphicon-chevron-down {
+	color: orange;
+}
+
+.article-box {
 	position: relative;
 	left: 0px;
 	top: 0px;
 	padding: 5px;
-	width: 600px;
 	height: 100px;
 	display: inline-table;
+	width: 45%;
+	max-height: 80px;
 
 }
 
-#article-title {
+.article-title {
 	font-variant: small-Caps;
+	white-space: normal;
+	max-width: 600px;
+	word-wrap: break-word;
 }
 
-#article-link {
+.article-link {
 	font-style: italic;
 	font-size: 0.875em;
 }
 
-#image-box {
-	position: absolute;
-	right: 20px;
-	bottom: 5px;
-	padding: 5px;
-	width: 100px;
+.image-wrapper {
+	float: right;
+	width: 200px;
 	height: 100px;
-	display: inline-table;
-
+	
 }
 
-#image-wrapper {
-	
+.image-box {
+	padding: 5px;
+	width:100px;
+	height: 100px;
+	text-align: right;
+	clear: right;
+	display: inline-table;
+}
+
+.image-box img {
+	border-radius: 6px;
 }
