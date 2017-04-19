@@ -1,17 +1,76 @@
-
-
 body {
-	padding-top: 50px;
+	padding-top: 70px;
+	min-width: 843px;
 }
+
+.navbar-brand {
+	position: relative;
+	bottom: 14px;
+	left: 4px;
+}
+
+a.navbar-brand {
+	font-family: verdana;
+	font-weight: bold;
+	font-variant: small-caps;
+	color:black;
+}
+
+.nav-tabs {
+	border-bottom: none;
+	font-family: verdana;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+.nav-tabs li a,
+.nav-tabs li a:hover,
+.nav-tabs li a:focus {
+	color :#fff;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+.nav-tabs .open a,
+.nav-tabs .open a:hover,
+.nav-tabs .open a:focus,
+.nav-tabs li a:hover,
+.nav-tabs li a:focus {
+	color: #fff;
+	background-color: #3071a9;
+	border-color: transparent;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
+.nav-tabs li.active a,
+.nav-tabs li.active a:hover,
+.nav-tabs li.active a:focus {
+	color: #455a64;
+	background-color: #fff;
+	border-color: #428bca;
+	border-bottom-color: transparent;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+
 
 #menu {
-	padding-right: 20px;
-	max-height: 51px;
-	overflow: hidden;
+	position: absolute;
+	background-color: #428bca;
+	padding-top:10px;
+	height: 61px;
+	border-bottom-right-radius: -100px;
 }
 
-#sidebar {
-	margin-top: 70px;
+#menu-child {
+	position:relative;
+	bottom:-9px;
+}
+
+#advanced-search {
+	position:relative;
+	bottom:12px;
 }
 
 .btn-group .btn {
@@ -33,15 +92,10 @@ body {
 	margin-left: 20px;
 }
 
-#arrow .list-group {
-	margin-bottom: 0px;
-}
-
 .article-container {
-	border: 1px solid grey;
+	border: 1px solid #455a64;
 	margin: 5px;
 	height: 100px;
-	border-radius: 6px;
 	white-space: nowrap;
 	overflow: hidden;
 
@@ -64,11 +118,11 @@ body {
 }
 
 .left-arrow .glyphicon {
-	color: grey;
+	color: #455a64;
 }
 
 .left-arrow a:hover span {
-	color: blue;
+	color: #0099cc;
 }
 
 .right-arrow {
@@ -78,11 +132,11 @@ body {
 }
 
 .right-arrow .glyphicon {
-	color: grey;
+	color: #455a64;
 }
 
 .right-arrow a:hover span {
-	color: red;
+	color: #ff4444;
 }
 
 .up-down-arrows {
@@ -95,15 +149,15 @@ body {
 }
 
 .up-down-arrows .glyphicon {
-	color: grey;
+	color: #455a64;
 }
 
 .up-down-arrows a:hover .glyphicon-chevron-up {
-	color: #5cb85c;
+	color: #00c851;
 }
 
 .up-down-arrows a:hover .glyphicon-chevron-down {
-	color: orange;
+	color: #ffbb33;
 }
 
 .article-box {
