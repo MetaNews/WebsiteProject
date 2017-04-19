@@ -9,23 +9,30 @@
 		<script src="../static/js/newswebsite.js"></script>
 	</head>
 	<body>
-		<div id="menu" class="navbar navbar-fixed-top">
-			<div class ="container-fluid" id="menu-child">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="/">Meta News</a>
-				</div>
-				<div id="click-tabs">
-					<ul class="nav nav-tabs navbar-left">
+		<div id="top-nav-wrapper" class="navbar navbar-fixed-top">
+			<div id="top-nav" class ="container-fluid">
+				<div class="dropdown navbar-left" id="main-menu">
+					<button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false">Meta News <span class="caret"></span></button>
+					<ul class="dropdown-menu dropdown-menu-left navbar-left" role="menu">
 						<li><a href="#recommended">Recommended</a></li>
 						<li class="active"><a href="#popular">Popular</a></li>
 						<li><a href="#new">New</a></li>
+						<li id="ideo-sep"role="seperator" class="divider"></li>
+						<li id="left"><a href="#left"><span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
+						<li id="neutral" class="active"><a href="#neutral">Neutral</a></li>
+						<li id="right"><a href="#right">Right <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+						<li id="quality-sep" role="seperator" class="divider"></li>
+						<li id="legit"class="active"><a href="#legit">Legit</a></li>
+						<li id="fake"><a href="#fake">Fake News</a></li>
 					</ul>
-					<ul class="nav nav-tabs navbar-left">
-						<li><a href="#left">Left</a></li>
+				</div>
+				<div id="click-tabs">
+					<ul class="nav nav-tabs navbar-left" id="ideo-tabs">
+						<li><a href="#left"><span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
 						<li class="active"><a href="#neutral">Neutral</a></li>
-						<li><a href="#right">Right</a></li>
+						<li><a href="#right">Right <span class="glyphicon glyphicon-chevron-right"></span></a></li>
 					</ul>
-					<ul class ="nav nav-tabs navbar-left">
+					<ul class ="nav nav-tabs navbar-left" id="quality-tabs">
 						<li class="active"><a href="#legit">Legit</a></li>
 						<li><a href="#fake">Fake News</a></li>
 					</ul>
@@ -33,7 +40,7 @@
 				<div class="input-group navbar-right" id="advanced-search">
 					<div class="navbar-form">
 						<div class="input-group-btn">
-							<input type="text" class="form-control" placeholder="Search">
+							<input id="search-input" type="text" class="form-control" placeholder="Search">
 							<div class="btn-group" role="group">
 								<div class="dropdown dropdown-1g">
 									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
@@ -87,7 +94,7 @@
 								<img src="https://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED.png" style="width:90px;height:90px;"></img>
 							</div>
 							<div class="image-box">
-								<img src=http://www.post-gazette.com/image/2015/01/12/ca57,11,2080,2034/GeraldoRivera.jpg style="width:90px;height:90px;"></img>
+								<img src="http://www.post-gazette.com/image/2015/01/12/ca57,11,2080,2034/GeraldoRivera.jpg" style="width:90px;height:90px;"></img>
 							</div>
 						</div>
 					</div>
