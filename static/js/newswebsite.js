@@ -3,14 +3,20 @@ $(document).ready(function(){
     $(".nav-tabs a").click(function(){
         $(this).tab('show');
     });
-    resizer($('#top-nav').width(), 995);
+    
+    resizer($('#top-nav').width(), 962);
+    
+    $("#quality-btns button").click(function(){
+    	$(".btn-group button").removeClass("active");
+    	$(this).addClass("active");
+    });
 });
 
 $(window).on('resize', function(){
     var win = $(this); //this = window
     screenLen = $('#top-nav').width();
     // elemLen = 151 + $('#quality-tabs').width() + $('#ideo-tabs').width() + $('#advanced-search').width();
-    elemLen = 995;
+    elemLen = 962;
     resizer(screenLen, elemLen);
 });
 
@@ -21,7 +27,9 @@ function resizer(screenLen, elemLen) {
     	
     	$('#advanced-search').css("display", "table")
     	$('#ideo-tabs').css("display", "none");
-    	$('#quality-tabs').css("display", "none");
+    	$('#quality-btns').css("display", "none");
+    	
+    	$('#top-nav-wrapper').css("height", 110);
     	
     	//Menu Items
     	
@@ -39,7 +47,9 @@ function resizer(screenLen, elemLen) {
     	
     	$('#advanced-search').css("display", "table")
     	$('#ideo-tabs').css("display", "none");
-    	$('#quality-tabs').css("display", "none");
+    	$('#quality-btns').css("display", "none");
+    	
+    	$('#top-nav-wrapper').css("height", 60);
     	
     	//Menu Items
     	
@@ -57,7 +67,9 @@ function resizer(screenLen, elemLen) {
     	
     	$('#advanced-search').css("display", "table")
     	$('#ideo-tabs').css("display", "initial");
-    	$('#quality-tabs').css("display", "none");
+    	$('#quality-btns').css("display", "none");
+    	
+    	$('#top-nav-wrapper').css("height", 60);
     	
     	//Menu Items
     	
@@ -75,7 +87,9 @@ function resizer(screenLen, elemLen) {
     	
     	$('#advanced-search').css("display", "table")
     	$('#ideo-tabs').css("display", "initial");
-    	$('#quality-tabs').css("display", "initial");
+    	$('#quality-btns').css("display", "initial");
+    	
+    	$('#top-nav-wrapper').css("height", 60);
     	
     	//Menu Items
     	
