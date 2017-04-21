@@ -3,10 +3,10 @@
 	<head>
 		<title>Meta News</title>
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link href="../static/css/newswebsite.css" rel="stylesheet">
+		<link href="../static/css/index.css" rel="stylesheet">
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="../static/js/newswebsite.js"></script>
+		<script src="../static/js/index.js"></script>
 	</head>
 	<body>
 		<div id="top-nav-wrapper" class="navbar navbar-fixed-top">
@@ -22,19 +22,15 @@
 						<li id="neutral" class="active"><a href="#neutral">Neutral</a></li>
 						<li id="right"><a href="#right">Right <span class="glyphicon glyphicon-chevron-right"></span></a></li>
 						<li id="quality-sep" role="seperator" class="divider"></li>
-						<li id="legit"class="active"><a href="#legit">Legit</a></li>
+						<li id="legit" class="active"><a href="#legit">Legit</a></li>
 						<li id="fake"><a href="#fake">Fake News</a></li>
 					</ul>
 				</div>
-				<div id="click-tabs">
+				<div class="click-tabs">
 					<ul class="nav nav-tabs navbar-left" id="ideo-tabs">
 						<li><a href="#left"><span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
 						<li class="active"><a href="#neutral">Neutral</a></li>
 						<li><a href="#right">Right <span class="glyphicon glyphicon-chevron-right"></span></a></li>
-					</ul>
-					<ul class ="nav nav-tabs navbar-left" id="quality-tabs">
-						<li class="active"><a href="#legit">Legit</a></li>
-						<li><a href="#fake">Fake News</a></li>
 					</ul>
 				</div>
 				<div class="input-group navbar-right" id="advanced-search">
@@ -43,7 +39,7 @@
 							<input id="search-input" type="text" class="form-control" placeholder="Search">
 							<div class="btn-group" role="group">
 								<div class="dropdown dropdown-1g">
-									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+									<button id="search-menu-btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
 									<ul class="dropdown-menu dropdown-menu-right" role="menu" id="search-menu">
 										<li><a href="#">All</a></li>
 										<li><a href="#">Articles</a></li>
@@ -56,6 +52,10 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div id="quality-btns" class="btn-group navbar-right" data-toggle="buttons">
+					<button class="btn btn-basic" aria-pressed="true">Legit</button>
+					<button class="btn btn-basic active">Fake News</button>
 				</div>
 			</div>
 		</div>
@@ -79,23 +79,30 @@
 							<div class="right-arrow">
 								<a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
 							</div>
+							<div class="veri-icon">
+								<a href="#verify"><span class="glyphicon glyphicon-ok-sign"></span></a>
+							</div>
+							<div class="ideo-icon">
+								<a href="#ideo"><span class=""></span></a>
+							</div>
+							<div class="comment-icon">
+								<a href="#comment"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+							</div>
+							<div class="info-icon">
+								<a href="#info"><span></span></a>
+							</div>
 						</div>
-						<div class="article-box">
+						<div class="article-box container-fluid">
 							<div class="article-title">
 								<a href="http://i.imgur.com/CBe8OPH.jpg">Instrument. If you upvote this it will show up on google images when people search "instrument" .</a>
 							</div>
-							<div class="article-link">
-								<a href="http://i.imgur.com/CBe8OPH.jpg">http://i.imgur.com/CBe8OPH.jpg</a> ~ 
-								<a href="#comments">1234 Comments</a>
-							</div>
 						</div>
-						<div class="image-wrapper">
-							<div class="image-box">
-								<img src="https://pbs.twimg.com/profile_images/508960761826131968/LnvhR8ED.png" style="width:90px;height:90px;"></img>
-							</div>
-							<div class="image-box">
-								<img src="http://www.post-gazette.com/image/2015/01/12/ca57,11,2080,2034/GeraldoRivera.jpg" style="width:90px;height:90px;"></img>
-							</div>
+						<div class="info-box container-fluid">
+							<ul class="list-inline">
+								<li><a href="#">CNN</a></li>
+								<li><a href="#">Geraldo Rivera</a></li>
+								<li><a href="#">69 Comments</a>
+							</ul>
 						</div>
 					</div>
 			    </div>
