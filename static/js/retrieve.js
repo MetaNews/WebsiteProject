@@ -48,7 +48,7 @@ function queryData() {
       document.getElementById('textarea').innerHTML += "Unable to query. Error: " + "\n" + JSON.stringify(err, undefined, 2);
     } else {
       data.Items.forEach(function(article) {
-        document.getElementById('textarea').innerHTML += "\n" + article.url + ": " + article.Website;
+        document.getElementById('textarea').innerHTML += "\n" + article.WebsiteURL + ": " + article.Website;
       });
 
     }
