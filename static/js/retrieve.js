@@ -1,5 +1,4 @@
-document.write("aws-sdk-2.49.0.min.js");
-
+document.writeln("<script type='text/javascript' src='./static/js/dependencies/aws-sdk-2.49.0.min.js'></script>");
 AWS.config.region = 'us-east-1';
 
 // Configure the credentials provider to use your identity pool
