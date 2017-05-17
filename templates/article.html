@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html lang="en-US">
 	<head>
+		<!-- Titles -->
+	
 		<title>News</title>
 		<link rel="shortcut icon" href="../pictures/LRCLogo.png" />
 		
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link href="../static/css/lrc.css" rel="stylesheet">
-		<link href="../static/css/article.css" rel="stylesheet">
+		<!-- Styles -->
+		
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		
+		<link rel="stylesheet" href="../static/css/lrc.css">
+		<link rel="stylesheet" href="../static/css/article.css">
+				
+		<!-- Graphs -->
+		
+		<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+		
+		<!-- Navigation Scripts -->
 		
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="../static/js/index.js"></script>
+		<script src="../static/js/lrc.js"></script>
 		
-		<!-- Resources -->
+		<!-- Authentication Scripts -->
+		
+		<script src="../static/js/dependencies/aws-cognito-sdk.min.js"></script>
+		<script src="../static/js/dependencies/aws-sdk-2.49.0.min.js"></script>
+		<script src="../static/js/dependencies/amazon-cognito-identity.min.js"></script>
+		<script src="../static/js/authentication.js"></script>
+		
+		<!-- Graph Scripts -->
+	
 		<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 		<script src="https://www.amcharts.com/lib/3/radar.js"></script>
 		<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-		<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 		<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 		
-		<!-- Chart code -->
 		<script src="../static/js/graphs.js"></script>
+	
 	</head>
 	
 	<body>
@@ -166,18 +184,21 @@
 				    <div class="modal-body">
 				    	<div class="jumbotron">
 				    		<h4>New User Login</h4>
-				    		<form class="form-signin">
+				    		<div class=""></div>
+				    		<form class="form-signup" id="nul-form">
 				    			<label for="inputUsername" class="sr-only">Username</label>
-				    			<input name="inputUsername" id="inputUsername" class="form-control" placeholder="Username">
+				    			<input type="username" name="inputUsername" id="inputUsername" class="form-control" placeholder="Username">
 				    			<label for="inputEmail" class="sr-only">Email</label>
 				    			<input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email">
 				    			<label for="inputPassword" class="sr-only">Password</label>
 				    			<input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password">
+				    			<p id="nul-warning"></p>
+				    			<button id='btnSignUp' type="button" class="btn btn-primary">Sign Up</button>
 				    		</form>
 				    	</div>				    
 			    	</div>
 				    <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        <button id="nul-close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				    </div>
 				</div>
 			</div>
@@ -197,6 +218,6 @@
 			    </div>
 			</div>
 		</div>
-	</div>
+	</div>	
 	</body>
 </html>
