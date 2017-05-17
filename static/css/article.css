@@ -1,0 +1,69 @@
+
+#publisher-wrapper {
+	float: left;
+	position: relative;
+	width: 30%;
+}
+
+.graph-container {
+	display: inline-block;
+	width: 32.666%;
+	height: 250px;
+	border: 1px solid #337ab7;
+	margin-top: 5px;
+}
+
+#article-chart-div {
+	float: left;
+	margin-left: .5%;
+	margin-right: .5%;
+}
+
+#publisher-chart-div {
+}
+
+#journalist-chart-div {
+	float: right;
+	margin-left: .5%;
+	margin-right: .5%;
+}
+
+
+#graph-labels {
+	margin-left: 0px;
+	margin-bottom: 5px;
+}
+
+#graph-labels li{
+	width: 32.666%;
+	text-align: center;
+}
+
+#graph-labels li:first-child {
+	margin-right: .5%;
+	margin-left: .5%;
+}
+
+#graph-labels li:last-child {
+	margin-right: .5%;
+	margin-left: .5%;
+	float: right;
+}
+
+.tag-container {
+	display: inline-block;
+	width: 32.666%;
+	margin-top: 5px;
+}
+
+.tag-box {
+	
+}
+
+.modal h4 {
+	text-align: center;
+}
+
+.form-signin input {
+	margin: 5px;
+}
