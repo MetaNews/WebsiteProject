@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<title>News</title>
+		<link rel="shortcut icon" href="../pictures/LRCLogo.png" />
+		
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link href="../static/css/lrc.css" rel="stylesheet">
+		<link href="../static/css/article.css" rel="stylesheet">
+		
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="../static/js/index.js"></script>
+		
+		<!-- Resources -->
+		<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+		<script src="https://www.amcharts.com/lib/3/radar.js"></script>
+		<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+		<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+		<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+		
+		<!-- Chart code -->
+		<script src="../static/js/graphs.js"></script>
+	</head>
+	
+	<body>
+		<div id="top-nav-wrapper" class="navbar navbar-fixed-top">
+			<div id="top-nav" class ="container-fluid">
+				<div class="dropdown navbar-left" id="main-menu">
+					<button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false">LRC News <span class="caret"></span></button>
+					<ul class="dropdown-menu dropdown-menu-left navbar-left" role="menu">
+						<li><a href="index.html">Recommended</a></li>
+						<li class="active"><a href="index.html">Popular</a></li>
+						<li><a href="index.html">New</a></li>
+						<li id="ideo-sep"role="seperator" class="divider"></li>
+						<li id="left"><a href="#left"><span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
+						<li id="neutral" class="active"><a href="#neutral">Neutral</a></li>
+						<li id="right"><a href="#right">Right <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+						<li id="quality-sep" role="seperator" class="divider"></li>
+						<li id="legit" class="active"><a href="#legit">Legit</a></li>
+						<li id="fake"><a href="#fake">Fake News</a></li>
+					</ul>
+				</div>
+				<div class="click-tabs">
+					<ul class="nav nav-tabs navbar-left" id="ideo-tabs">
+						<li><a href="#left"><span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
+						<li class="active"><a href="#neutral">Neutral</a></li>
+						<li><a href="#right">Right <span class="glyphicon glyphicon-chevron-right"></span></a></li>
+					</ul>
+				</div>
+				<div class="input-group navbar-right" id="advanced-search">
+					<div class="navbar-form">
+						<div class="input-group-btn">
+							<input id="search-input" type="text" class="form-control" placeholder="Search">
+							<div class="btn-group" role="group">
+								<div class="dropdown dropdown-1g">
+									<button id="search-menu-btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+									<ul class="dropdown-menu dropdown-menu-right" role="menu" id="search-menu">
+										<li><a href="#">All</a></li>
+										<li><a href="#">Articles</a></li>
+										<li><a href="#">Journalists</a></li>
+										<li><a href="#">Publishers</a></li>
+									</ul>
+									<button id="search" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+									<button id="login" type="button" class="btn btn-success" data-target="#loginModal" data-toggle="modal"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="quality-btns" class="btn-group navbar-right" data-toggle="buttons">
+					<button class="btn btn-basic" aria-pressed="true">Legit</button>
+					<button class="btn btn-basic">Fake News</button>
+				</div>
+			</div>
+		</div>
+		<div id="content-wrapper" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-1">
+				</div>
+				<div class="col-sm-9">
+					<div class="shadow-container article-container">
+						<div class="arrow-box">
+							<div class="left-arrow">
+								<a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
+							</div>
+							<div class="up-down-arrows-wrapper">
+								<ul class="list-group up-down-arrows">
+									<li><a href="#" ><span class="glyphicon glyphicon-chevron-up"></span></a>
+									<li>999</li>
+									<li><a href="#" ><span class="glyphicon glyphicon-chevron-down"></span></a>
+								</ul>
+							</div>
+							<div class="right-arrow">
+								<a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a>
+							</div>
+							<div class="veri-icon">
+								<a href="#verify"><span class="glyphicon glyphicon-ok-sign"></span></a>
+							</div>
+							<div class="ideo-icon">
+								<a href="#ideo"><span class=""></span></a>
+							</div>
+							<div class="comment-icon">
+								<a href="#comment"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+							</div>
+							<div class="info-icon">
+								<a href="#info"><span></span></a>
+							</div>
+						</div>
+						<div class="article-box container-fluid">
+							<div class="article-title">
+								<a href="http://i.imgur.com/CBe8OPH.jpg">Instrument. If you upvote this it will show up on google images when people search "instrument" .</a>
+								<hr>
+							</div>
+						</div>
+						<div class="info-box">
+							<ul class="list-inline block-list">
+								<li><a href="#">CNN</a></li>
+								<li><a href="#">Geraldo Rivera</a></li>
+								<li style="float:right;"><a href="article.html">69 <span class="glyphicon glyphicon-comment"></span></a>
+								<li class="article-tag"><a data-toggle="modal" data-target="#tagModal"><span class="glyphicon glyphicon-tags"></span></a>
+								<li class="article-tag"><a href="article.html">Clickbait</a></li>
+								<li class="article-tag"><a href="article.html">Misleading Title</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="shadow-container">
+						<div id="graph-wrapper">
+							<div class="graph-container" id="article-chart-div">
+							</div>
+							<div class="graph-container" id="publisher-chart-div">
+							</div>
+							<div class="graph-container" id="journalist-chart-div">
+							</div>
+						</div>
+						<div id="labels-wrapper">
+							<ul class="list-inline block-list" id="graph-labels">
+								<li><a href="#">Article</a>
+								<li><a href="#">CNN</a></li>
+								<li><a href="#">Geraldo Rivera</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="shadow-container">
+						<div class="tag-container">
+							<div class="tag-box">
+							</div>
+						</div>
+						<div class="tag-container">
+						</div>
+						<div class="tag-container">
+						</div>
+					</div>
+			    </div>
+				<div class="col-sm-2">
+			    </div>
+			</div>
+		</div>
+		<div id="loginModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				    <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        <h3 class="modal-title">Login</h3>
+				    </div>
+				    <div class="modal-body">
+				    	<div class="jumbotron">
+				    		<h4>New User Login</h4>
+				    		<form class="form-signin">
+				    			<label for="inputUsername" class="sr-only">Username</label>
+				    			<input name="inputUsername" id="inputUsername" class="form-control" placeholder="Username">
+				    			<label for="inputEmail" class="sr-only">Email</label>
+				    			<input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email">
+				    			<label for="inputPassword" class="sr-only">Password</label>
+				    			<input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password">
+				    		</form>
+				    	</div>				    
+			    	</div>
+				    <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<div id="tagModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			    <div class="modal-header">
+			        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Article Tags</h4>
+			    </div>
+			    <div class="modal-body">
+
+			    </div>
+			    <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			    </div>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
