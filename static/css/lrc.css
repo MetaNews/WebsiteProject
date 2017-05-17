@@ -2,6 +2,16 @@ body {
 	font-family: verdana;
 }
 
+.shadow-container {
+	border: 1px solid silver;
+	overflow: hidden;
+	border-radius: 2px;
+	box-shadow: -1px 1px DarkGray;
+	margin-bottom: 10px;
+}
+
+/* ----- Navigation ----- */
+
 #top-nav-wrapper {
 	position: relative;
 	background-color: #484848;
@@ -140,6 +150,46 @@ body {
 	margin-left: 20px;
 }
 
+.modal h4 {
+	text-align: center;
+}
+
+.form-signup {
+	text-align: center;
+}
+
+.form-signup input {
+	display: inline-block;
+}
+
+.form-signup input[type="username"] {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.form-signup input[type="email"] {
+    margin-top: -1px;
+    margin-bottom: -1px;
+    border-radius: 0px;
+}
+.form-signup input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-signup button[type="button"] {
+	margin-top: 10px;
+}
+
+#nul-warning {
+	margin-top: 20px;
+	color: red;
+	font-size: 12px;
+	text-align: center;
+}
+
+/* ----- Arrow Box ----- */
+
 .arrow-box {
 	position: relative;
 	/* padding: 20px; */
@@ -202,6 +252,8 @@ body {
 	color: #ffbb33;
 }
 
+/* ----- Icons ----- */
+
 .veri-icon {
 	position: absolute;
 	bottom: -12px;
@@ -245,13 +297,7 @@ body {
 	color: #484848;
 }
 
-.shadow-container {
-	border: 1px solid silver;
-	overflow: hidden;
-	border-radius: 2px;
-	box-shadow: -1px 1px DarkGray;
-	margin-bottom: 10px;
-}
+/* ----- Article Stuff ----- */
 
 .article-container {
 	height: 103px;
