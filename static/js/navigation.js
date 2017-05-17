@@ -29,7 +29,7 @@ function resizer(screenLen, elemLen) {
     	$('#ideo-tabs').css("display", "none");
     	$('#quality-btns').css("display", "none");
     	
-    	$('#top-nav-wrapper').css("height", 110);
+    	// $('#top-nav-wrapper').css("height", 110);
     	
     	//Menu Items
     	
@@ -41,7 +41,7 @@ function resizer(screenLen, elemLen) {
     	$('#neutral').css("display", "block");
     	$('#ideo-sep').css("display", "list-item");
     }
-    else if (screenLen < 804 )
+    else if (screenLen < 769 )
 	{
     	//Navbar Items
     	
@@ -49,7 +49,7 @@ function resizer(screenLen, elemLen) {
     	$('#ideo-tabs').css("display", "none");
     	$('#quality-btns').css("display", "none");
     	
-    	$('#top-nav-wrapper').css("height", 60);
+    	// $('#top-nav-wrapper').css("height", 60);
     	
     	//Menu Items
     	
@@ -61,7 +61,7 @@ function resizer(screenLen, elemLen) {
     	$('#neutral').css("display", "block");
     	$('#ideo-sep').css("display", "list-item");
 	}
-    else if (screenLen < elemLen)
+    else if (screenLen < 932)
     {
     	//Navbar Items
     	
@@ -69,7 +69,7 @@ function resizer(screenLen, elemLen) {
     	$('#ideo-tabs').css("display", "initial");
     	$('#quality-btns').css("display", "none");
     	
-    	$('#top-nav-wrapper').css("height", 60);
+    	// $('#top-nav-wrapper').css("height", 60);
     	
     	//Menu Items
     	
@@ -89,7 +89,7 @@ function resizer(screenLen, elemLen) {
     	$('#ideo-tabs').css("display", "initial");
     	$('#quality-btns').css("display", "initial");
     	
-    	$('#top-nav-wrapper').css("height", 60);
+    	// $('#top-nav-wrapper').css("height", 60);
     	
     	//Menu Items
     	
