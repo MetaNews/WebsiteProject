@@ -1,4 +1,4 @@
-document.writeln("<script type='text/javascript' src='./static/js/dependencies/pooldata.js'></script>");
+document.writeln("<script type='text/javascript' src='../static/js/dependencies/pooldata.js'></script>");
 
 function register(email, user, password) {
   var userPool = getPoolData();
@@ -16,6 +16,23 @@ function register(email, user, password) {
   userPool.signUp(user, password, attributeList, null, function(err, result) {
     if (err) {
       console.log(err);
+      
+      //Writing to HTML/the user what went wrong with their signup.
+        
+      switch (err.code) {
+        case "UsernameExistsException":
+          $('#nul-warning').text('That username already exists.');
+          break;
+        case "InvalidPasswordException":
+          $('#nul-warning').text('Passwords must be at least 8 characters in length.');
+          break;
+        case "InvalidParameterException":
+          $('#nul-warning').text('Please enter a valid email address.'); //This can potentially trigger if the password is less than 6 characters long, for some reason.
+          break;
+        default:
+          $('#nul-warning').text('Unknown error occured: ' + code);
+          break;
+      }
       return;
     }
     cognitoUser = result.user;
