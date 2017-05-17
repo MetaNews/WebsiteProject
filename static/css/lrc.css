@@ -6,7 +6,6 @@ body {
 	position: relative;
 	background-color: #484848;
 	padding-top:20px;
-	height: 60px;
 }
 
 .navbar-brand {
@@ -19,7 +18,7 @@ body {
 }
 
 #main-menu {
-	bottom: 6px;
+	bottom: 1px;
 	margin-right: 16px;
 	width: 120px;
 	display: inline-table;
@@ -40,6 +39,11 @@ body {
 	border-bottom: none;
 	font-weight: bold;
 	font-variant: small-caps;
+}
+
+#ideo-tabs {
+	position: relative;
+	bottom: -11px;
 }
 
 .nav-tabs li a {
@@ -81,23 +85,20 @@ body {
 #quality-btns {
 	font-variant: small-caps;
 	position: relative;
-	bottom: 4px;
-}
-
-#quality-btns button.active {
-	
+	bottom: -8px;
 }
 
 #quality-btns button:first-child {
 	border-top-left-radius: 4px;
 	border-bottom-left-radius: 4px;
 	color: #909090;
+	border: 1px solid #484848;
 }
 
 #quality-btns button:first-child.active {
 	background-color: #a0d6a0;
-	color: #484848;
-	box-shadow: inset -1px 0 10px;
+	color: black;
+	/* box-shadow: inset -1px 0 10px; */
 	border: transparent;
 }
 
@@ -105,18 +106,18 @@ body {
 	border-top-right-radius: 4px;
 	border-bottom-right-radius: 4px;
 	color: #909090;
+	border: 1px solid #484848;
 }
 
 #quality-btns button:last-child.active {
 	background-color: #eaa2a0;
-	color: #484848;
-	box-shadow: inset 1px 0 10px;
+	color: black;
+	/* box-shadow: inset 1px 0 10px; */
 	border: transparent;
 }
 
-#advanced-search {
-	position:relative;
-	bottom:12px;
+.navbar-form {
+	 box-shadow: none;
 }
 
 #search-menu-btn {
@@ -130,29 +131,26 @@ body {
     border-bottom-right-radius: 4px;
 }
 
+#search-input {
+	width: 170px;
+}
+
 #login {
 	border-radius: 8px;
 	margin-left: 20px;
 }
 
-.article-container {
-	border: 1px solid silver;
-	overflow: hidden;
-	border-radius: 2px;
-	box-shadow: -1px 1px DarkGray;
-	height: 103px;
-}
-
 .arrow-box {
 	position: relative;
-	padding: 20px;
+	/* padding: 20px; */
 	width: 100px;
 	height: 100px;
 	margin-right: 0px;
 	display: inline-table;
-	border: 1px solid silver;
+	/* border: 1px solid silver; */
 	margin: 1px;
 	float: left;
+	top: -15px;
 }
 
 .left-arrow {
@@ -206,7 +204,7 @@ body {
 
 .veri-icon {
 	position: absolute;
-	top: 8px;
+	bottom: -12px;
 	left: 8px;
 }
 
@@ -217,7 +215,7 @@ body {
 
 .ideo-icon {
 	position: absolute;
-	top: 8px;
+	bottom: -12px;
 	right: 8px;
 }
 
@@ -228,12 +226,11 @@ body {
 
 .comment-icon {
 	position: absolute;
-	bottom: 8px;
-	left: 8px;
+	bottom: -12px;
+	right: 8px;
 }
 
 .glyphicon.glyphicon-comment {
-	font-size: 24px;
 	color: #484848;
 }
 
@@ -248,12 +245,24 @@ body {
 	color: #484848;
 }
 
+.shadow-container {
+	border: 1px solid silver;
+	overflow: hidden;
+	border-radius: 2px;
+	box-shadow: -1px 1px DarkGray;
+	margin-bottom: 10px;
+}
+
+.article-container {
+	height: 103px;
+}
+
 .article-box {
 	position: relative;
 	overflow: hidden;
 	height: 60px;
 	margin: 1px;
-	border: 1px solid silver;
+	/* border: 1px solid silver; */
 	padding: 0px;
 }
 
@@ -285,34 +294,48 @@ body {
 	overflow: hidden;
 	height: 38px;
 	margin: 1px;
-	border: 1px solid silver;
-	font-weight: bold;
 }
 
-.info-box ul {
-	height: 39px;
-}
-
-.info-box ul li {
-	height: 39px;
+.block-list li {
 	padding: 0px;
 }
 
-.info-box ul li:last-child {
-	float: right;
+.block-list li:last-child {
 }
 
-.info-box ul li a {
+.block-list li a {
 	display: block;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 15px;
 	padding-right: 15px;
 	color: #484848;
+	font-weight: bold;
 }
 
-.info-box ul li a:hover {
+.block-list li a:hover {
 	background-color: gainsboro;
 	text-decoration: none;
 	color: #484848;
 }
+
+.article-tag {
+	float: right;
+}
+
+.article-tag a {
+	font-variant: small-caps;
+	color: white !important;
+	font-size: 12px;
+	border: 1px solid #2e6da4;
+	border-radius: 4px;
+	background-color: #337ab7;
+	padding: 5px !important;
+	margin: 5px;
+	min-width: 26px;
+}
+
+.article-tag a:hover {
+	background-color: #2e6da4 !important;
+}
+
