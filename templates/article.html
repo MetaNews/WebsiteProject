@@ -25,8 +25,8 @@
 		
 		<!-- Authentication Scripts -->
 		
-		<script src="../static/js/dependencies/aws-cognito-sdk.min.js"></script>
 		<script src="../static/js/dependencies/aws-sdk-2.49.0.min.js"></script>
+		<script src="../static/js/dependencies/aws-cognito-sdk.min.js"></script>
 		<script src="../static/js/dependencies/amazon-cognito-identity.min.js"></script>
 		<script src="../static/js/authentication.js"></script>
 		
@@ -80,7 +80,7 @@
 										<li><a href="#">Publishers</a></li>
 									</ul>
 									<button id="search" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-									<button id="login" type="button" class="btn btn-success" data-target="#loginModal" data-toggle="modal"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
+									<button id="login" type="button" class="btn btn-primary" data-target="#loginModal" data-toggle="modal"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
 								</div>
 							</div>
 						</div>
@@ -182,23 +182,35 @@
 				        <h3 class="modal-title">Login</h3>
 				    </div>
 				    <div class="modal-body">
-				    	<div class="jumbotron">
-				    		<h4>New User Login</h4>
-				    		<div class=""></div>
+				    	<div id="signup-div" class="modal-div">
+				    		<h4>New User Sign Up</h4>
 				    		<form class="form-signup" id="nul-form">
 				    			<label for="inputUsername" class="sr-only">Username</label>
-				    			<input type="username" name="inputUsername" id="inputUsername" class="form-control" placeholder="Username">
+				    			<input type="username" name="nul-inputUsername" id="nul-inputUsername" class="form-control" placeholder="Username">
 				    			<label for="inputEmail" class="sr-only">Email</label>
-				    			<input type="email" name="inputEmail" id="inputEmail" class="form-control" placeholder="Email">
+				    			<input type="email" name="nul-inputEmail" id="nul-inputEmail" class="form-control" placeholder="Email">
 				    			<label for="inputPassword" class="sr-only">Password</label>
-				    			<input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password">
+				    			<input type="password" name="nul-inputPassword" id="nul-inputPassword" class="form-control" placeholder="Password">
 				    			<p id="nul-warning"></p>
 				    			<button id='btnSignUp' type="button" class="btn btn-primary">Sign Up</button>
+				    		</form>
+				    	</div>
+				    	<div id="signin-div" class="modal-div">
+				    		<h4>User Sign In</h4>
+				    		<form class="form-signup" id="ul-form">
+				    			<label for="inputUsername" class="sr-only">Username</label>
+				    			<input type="username" name="ul-inputUsername" id="ul-inputUsername" class="form-control" placeholder="Username">
+				    			<label for="inputPassword" class="sr-only">Password</label>
+				    			<input type="password" name="ul-inputPassword" id="ul-inputPassword" class="form-control" placeholder="Password">
+				    			<p id="ul-warning"></p>
+				    			<button id='btnSignIn' type="button" class="btn btn-primary">Sign In</button>
 				    		</form>
 				    	</div>				    
 			    	</div>
 				    <div class="modal-footer">
-				        <button id="nul-close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				    	<button id="switch-signin" type="button" class="btn btn-default">Sign In</button>
+				    	<button id="switch-signup" type="button" class="btn btn-default">Sign Up</button>
+				        <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				    </div>
 				</div>
 			</div>
