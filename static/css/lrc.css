@@ -150,8 +150,16 @@ body {
 	margin-left: 20px;
 }
 
+.modal-div {
+	padding-top: 20px;
+	padding-bottom: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
 .modal h4 {
 	text-align: center;
+	margin-bottom: 20px;
 }
 
 .form-signup {
@@ -162,22 +170,22 @@ body {
 	display: inline-block;
 }
 
-.form-signup input[type="username"] {
+#nul-inputUsername {
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
 }
 
-.form-signup input[type="email"] {
+#nul-inputEmail {
     margin-top: -1px;
     margin-bottom: -1px;
     border-radius: 0px;
 }
-.form-signup input[type="password"] {
+#nul-inputPassword {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
 
-.form-signup button[type="button"] {
+#btnSignUp {
 	margin-top: 10px;
 }
 
@@ -186,6 +194,39 @@ body {
 	color: red;
 	font-size: 12px;
 	text-align: center;
+}
+
+#switch-signin {
+	float: left;
+	display: inline-block;
+}
+
+#switch-signup {
+	float: left;
+	display: none;
+}
+
+#ul-inputUsername {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+#ul-inputPassword {
+	border-top-right-radius: 0px;
+	border-top-left-radius: 0px;
+	margin-top: -1px;
+}
+
+#btnSignIn {
+	margin-top: 10px;
+}
+
+#signin-div {
+	display: none;
+}
+
+#signup-div {
+	display: block;
 }
 
 /* ----- Arrow Box ----- */
