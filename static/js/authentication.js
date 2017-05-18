@@ -38,7 +38,7 @@ function register(email, user, password) {
     cognitoUser = result.user;
     console.log("user name is " + cognitoUser.getUsername());
     var verificationCode = prompt('Please input verification code: ', '');
-    cognitoUser.confirmRegistration(user, verificationCode);
+    confirmRegistration(user, verificationCode);
 
   });
 }
