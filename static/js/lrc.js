@@ -8,11 +8,15 @@ $(document).ready(function(){
 	    resizer(screenLen, elemLen);
 	});
 	
-	// Button Clicks
+	// !---------- Button Clicks ----------!
+	
+	// Tabs
 	
     $(".nav-tabs a").click(function(){
         $(this).tab('show');
     });
+    
+    //Quality Buttons
         
     $("#quality-btns button").click(function(){
     	if (!($(this).hasClass("active"))) {
@@ -24,22 +28,67 @@ $(document).ready(function(){
     	}
     });
     
+    //User Sign In/Up Button
+    
+    $("#login").click(function() {
+    	//Check for user session
+    });
+    
+    //Sign Up Button
+    
 	$('#btnSignUp').click(function(){
-		if (($('#inputEmail').val().length == 0) || ($('#inputEmail').val().length == 0) || ($('#inputPassword').val().length == 0)) {
+		if (($('#nul-inputEmail').val().length == 0) || ($('#nul-inputEmail').val().length == 0) || ($('#nul-inputPassword').val().length == 0)) {
 			$('#nul-warning').text("You can't leave any fields blank.");
 		}
-		else if ($('#inputPassword').val().length < 6) { //Work around for InvalidParameterException with passwords < 6 characters.
+		else if ($('#nul-inputPassword').val().length < 6) { //Work around for InvalidParameterException with passwords < 6 characters.
 			$('#nul-warning').text("Passwords must be at least 8 characters in length.");
 		}
 		else {
-			register($('#inputEmail').val(), $('#inputUsername').val(), $('#inputPassword').val());
+			register($('#nul-inputEmail').val(), $('#nul-inputUsername').val(), $('#nul-inputPassword').val());
 			clearform('nul-form');
 		}
 	});
 	
-	$('#nul-close').click(function () {
+	//Switch To Sign In Modal Button
+	
+	$('#switch-signin').click(function() {
+		$('#signup-div').css("display", "none");
+		$('#switch-signin').css("display", "none");
+		$('#signin-div').css("display", "block");
+		$('#switch-signup').css("display", "inline-block");
+	});
+	
+	//Switch To Sign Up Modal Button
+	
+	$('#switch-signup').click(function() {
+		$('#signin-div').css("display", "none");
+		$('#switch-signup').css("display", "none");
+		$('#signup-div').css("display", "block");
+		$('#switch-signin').css("display", "inline-block");
+	});
+	
+	//Sign In Button
+	
+	$('#btnSignIn').click(function() {
+		if (($('#ul-inputUsername').val().length == 0) || ($('#ul-inputPassword').val().length == 0)) {
+			$('#ul-warning').text("You can't leave any fields blank.");
+		}
+		else if ($('#ul-inputPassword').val().length < 6) { //Work around for InvalidParameterException with passwords < 6 characters.
+			$('#ul-warning').text("Passwords must be at least 8 characters in length.");
+		}
+		else {
+			login($('#ul-inputUsername').val(), $('#ul-inputPassword').val());
+		}
+		
+	});
+	
+	//Close Button
+	
+	$('#close').click(function () {
 		clearform('nul-form');
+		clearform('ul-form');
 		$('#nul-warning').text('');
+		$('#ul-warning').text('');
 	});
 	
 });
@@ -59,7 +108,7 @@ function resizer(screenLen, elemLen) {
     {
     	//Navbar Items
     	
-    	$('#advanced-search').css("display", "table")
+    	$('#advanced-search').css("display", "table");
     	$('#ideo-tabs').css("display", "none");
     	$('#quality-btns').css("display", "none");
     	
@@ -79,7 +128,7 @@ function resizer(screenLen, elemLen) {
 	{
     	//Navbar Items
     	
-    	$('#advanced-search').css("display", "table")
+    	$('#advanced-search').css("display", "table");
     	$('#ideo-tabs').css("display", "none");
     	$('#quality-btns').css("display", "none");
     	
@@ -99,7 +148,7 @@ function resizer(screenLen, elemLen) {
     {
     	//Navbar Items
     	
-    	$('#advanced-search').css("display", "table")
+    	$('#advanced-search').css("display", "table");
     	$('#ideo-tabs').css("display", "initial");
     	$('#quality-btns').css("display", "none");
     	
@@ -119,7 +168,7 @@ function resizer(screenLen, elemLen) {
 	{
     	//Navbar Items
     	
-    	$('#advanced-search').css("display", "table")
+    	$('#advanced-search').css("display", "table");
     	$('#ideo-tabs').css("display", "initial");
     	$('#quality-btns').css("display", "initial");
     	
