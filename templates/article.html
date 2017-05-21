@@ -205,31 +205,40 @@
 				    			<p id="ul-warning"></p>
 				    			<button id='btnSignIn' type="button" class="btn btn-primary">Sign In</button>
 				    		</form>
+				    	</div>
+				    	<div id="verify-div" class="modal-div">
+				    		<h4>Verify Your Email</h4>
+				    		<form class="form-signup" id="verify-form">
+				    			<label for="input-code" class="sr-only">Authentication Code</label>
+				    			<input type="code" name="verify-code-input" id="verify-code-input" class="form-control" placeholder="Authentication Code">
+				    			<button id="verify-code-btn" type="button" class="btn btn-primary">Verify</button>
+				    		</form>
 				    	</div>				    
 			    	</div>
 				    <div class="modal-footer">
 				    	<button id="switch-signin" type="button" class="btn btn-default">Sign In</button>
 				    	<button id="switch-signup" type="button" class="btn btn-default">Sign Up</button>
+				    	<button id="verify-resend" type="button" class="btn btn-default">Get New Code</button>
 				        <button id="close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				    </div>
 				</div>
 			</div>
 		</div>
 		<div id="tagModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-			    <div class="modal-header">
-			        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Article Tags</h4>
-			    </div>
-			    <div class="modal-body">
-
-			    </div>
-			    <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			    </div>
+			<div class="modal-dialog">
+				<div class="modal-content">
+				    <div class="modal-header">
+				        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+				        <h4 class="modal-title">Article Tags</h4>
+				    </div>
+				    <div class="modal-body">
+	
+				    </div>
+				    <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				    </div>
+				</div>
 			</div>
-		</div>
-	</div>	
+		</div>	
 	</body>
 </html>
