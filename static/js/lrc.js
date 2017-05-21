@@ -40,12 +40,11 @@ $(document).ready(function(){
 		if (($('#nul-inputEmail').val().length == 0) || ($('#nul-inputEmail').val().length == 0) || ($('#nul-inputPassword').val().length == 0)) {
 			$('#nul-warning').text("You can't leave any fields blank.");
 		}
-		else if ($('#nul-inputPassword').val().length < 6) { //Work around for InvalidParameterException with passwords < 6 characters.
+		else if ($('#nul-inputPassword').val().length < 8) { //Work around for InvalidParameterException with passwords < 6 characters.
 			$('#nul-warning').text("Passwords must be at least 8 characters in length.");
 		}
 		else {
 			register($('#nul-inputEmail').val(), $('#nul-inputUsername').val(), $('#nul-inputPassword').val());
-			clearform('nul-form');
 		}
 	});
 	
@@ -54,6 +53,7 @@ $(document).ready(function(){
 	$('#switch-signin').click(function() {
 		$('#signup-div').css("display", "none");
 		$('#switch-signin').css("display", "none");
+		clearForm("nul-form");
 		$('#signin-div').css("display", "block");
 		$('#switch-signup').css("display", "inline-block");
 	});
@@ -63,6 +63,7 @@ $(document).ready(function(){
 	$('#switch-signup').click(function() {
 		$('#signin-div').css("display", "none");
 		$('#switch-signup').css("display", "none");
+		clearForm("ul-form");
 		$('#signup-div').css("display", "block");
 		$('#switch-signin').css("display", "inline-block");
 	});
@@ -85,15 +86,15 @@ $(document).ready(function(){
 	//Close Button
 	
 	$('#close').click(function () {
-		clearform('nul-form');
-		clearform('ul-form');
+		clearForm('nul-form');
+		clearForm('ul-form');
 		$('#nul-warning').text('');
 		$('#ul-warning').text('');
 	});
 	
 });
 
-function clearform(element) {
+function clearForm(element) {
 	var elements = document.getElementById(element)
 	
 	for (var i = 0; i < elements.length; i++) {
@@ -101,6 +102,59 @@ function clearform(element) {
 			elements[i].value = "";
 		}
 	}	
+}
+
+function signUpError(err) {
+	switch (err) {
+		case "UsernameExistsException":
+			$('#nul-warning').text('That username already exists.');
+			break;
+		case "InvalidPasswordException":
+			$('#nul-warning').text('Passwords must be at least 8 characters in length.');
+			break;
+		case "InvalidParameterException":
+			$('#nul-warning').text('Please enter a valid email address.'); // This can potentially trigger if the password is less than 6 characters long, for some reason.
+			break;
+		default:
+			$('#nul-warning').text('Unknown error occured: ' + code);
+			break;
+	}
+}
+
+function signUpSuccess(user) {
+	$('#signin-div').css("display", "none");
+	$('#switch-signup').css("display", "none");
+	clearForm("nul-form");
+	$('#signup-div').css("display", "none");
+	$('#switch-signin').css("display", "none");
+	$("#verify-resend").css("display", "inline-block");
+	$("#verify-div").css("display", "block");
+	
+	$("#verify-code-btn").click( function() {
+		var verificationCode = $("#verify-code-input").val();
+		if (verificationCode.length == 0) {
+			
+		}
+		else {
+			confirmRegistration(user, verificationCode);
+		}
+	});
+	
+	$("#verify-resend").click( function() {
+		resendConfirmation(user);
+	});
+}
+
+function verifySuccess() {
+	$('#signin-div').css("display", "block");
+	$('#switch-signup').css("display", "inline-block");
+	clearForm("verify-form");
+	$('#signup-div').css("display", "none");
+	$('#switch-signin').css("display", "none");
+	$("#verify-resend").css("display", "none");
+	$("#verify-div").css("display", "none");
+	
+	$('#ul-warning').text("You successfully verified your email.");
 }
 
 function resizer(screenLen, elemLen) {
