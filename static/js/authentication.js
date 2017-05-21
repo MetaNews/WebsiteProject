@@ -9,37 +9,23 @@ function register(email, user, password) {
     Name: "email",
     Value: email
   };
-
+  
   var attributeEmail = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserAttribute(dataEmail);
 
   attributeList.push(attributeEmail);
   userPool.signUp(user, password, attributeList, null, function(err, result) {
     if (err) {
-      console.log(err);
-      
-      //Writing to HTML/the user what went wrong with their signup.
-        
-      switch (err.code) {
-        case "UsernameExistsException":
-          $('#nul-warning').text('That username already exists.');
-          break;
-        case "InvalidPasswordException":
-          $('#nul-warning').text('Passwords must be at least 8 characters in length.');
-          break;
-        case "InvalidParameterException":
-          $('#nul-warning').text('Please enter a valid email address.'); //This can potentially trigger if the password is less than 6 characters long, for some reason.
-          break;
-        default:
-          $('#nul-warning').text('Unknown error occured: ' + code);
-          break;
-      }
-      return;
-    }
+        console.log(err.code);
+        signUpError(err.code);
+        return;
+    }    
     cognitoUser = result.user;
     console.log("user name is " + cognitoUser.getUsername());
-    var verificationCode = prompt('Please input verification code: ', '');
-    confirmRegistration(user, verificationCode);
-
+    
+    signUpSuccess(user);
+    
+//    var verificationCode = prompt('Please input verification code: ', '');
+//    confirmRegistration(user, verificationCode);
   });
 }
 
@@ -102,6 +88,7 @@ function confirmRegistration(user, confirmValue) {
       return;
     }
     console.log('call result: ' + result);
+    verifySuccess();
   });
 }
 
