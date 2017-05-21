@@ -206,6 +206,11 @@ body {
 	display: none;
 }
 
+#verify-resend {
+	display: none;
+	float: left;
+}
+
 #ul-inputUsername {
 	border-bottom-left-radius: 0px;
 	border-bottom-right-radius: 0px;
@@ -227,6 +232,14 @@ body {
 
 #signup-div {
 	display: block;
+}
+
+#verify-code-btn {
+	margin-top: 10px;
+}
+
+#verify-div {
+	display: none;
 }
 
 /* ----- Arrow Box ----- */
