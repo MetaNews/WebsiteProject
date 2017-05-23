@@ -23,9 +23,6 @@ function register(email, user, password) {
     console.log("user name is " + cognitoUser.getUsername());
     
     signUpSuccess(user);
-    
-//    var verificationCode = prompt('Please input verification code: ', '');
-//    confirmRegistration(user, verificationCode);
   });
 }
 
@@ -48,10 +45,12 @@ function login(user, password) {
   cognitoUser.authenticateUser(authenticationDetails, {
     onSuccess: function(result) {
       console.log("authentication successful!");
+      logInSuccess();
     },
 
     onFailure: function(err) {
       console.log(err);
+      logInError();
     }
   });
 }
