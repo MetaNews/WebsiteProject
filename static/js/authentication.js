@@ -257,3 +257,14 @@ function deleteUser() {
     });
   }
 }
+
+
+/**
+ * Checks for a valid user session.
+ * 
+ * @returns current user
+ */
+function getUserSession(user) {
+	var userPool = getPoolData();
+	return userPool.getCurrentUser();
+}
