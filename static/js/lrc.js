@@ -1,99 +1,120 @@
 $(document).ready(function(){
     resizer($('#top-nav').width(), 962);
     
+    if (getUserSession(null) != null) {
+    	$('#login').removeClass('btn-primary');
+    	$('#login').addClass('btn-success');
+    }
+    else {
+    	$('#login').removeClass('btn-success');
+    	$('#login').addClass('btn-primary');
+    }
+    
 	$(window).on('resize', function(){
 	    var win = $(this); //this = window
 	    screenLen = $('#top-nav').width();
 	    elemLen = 962;
 	    resizer(screenLen, elemLen);
 	});
-	
+
 	// !---------- Button Clicks ----------!
 	
 	// Tabs
 	
-    $(".nav-tabs a").click(function(){
+    $('.nav-tabs a').click(function(){
         $(this).tab('show');
     });
     
-    //Quality Buttons
+    // Quality Buttons
         
-    $("#quality-btns button").click(function(){
-    	if (!($(this).hasClass("active"))) {
-        	$(".btn-group button").removeClass("active");
-        	$(this).addClass("active");
+    $('#quality-btns button').click(function(){
+    	if (!($(this).hasClass('active'))) {
+        	$('.btn-group button').removeClass('active');
+        	$(this).addClass('active');
     	}
     	else {
-    		$(this).removeClass("active");
+    		$(this).removeClass('active');
     	}
     });
     
-    //User Sign In/Up Button
+    // User Sign In/Up Button
     
-    $("#login").click(function() {
-    	$("#login").attr("data-target", "");
-    	if (getPoolData().getCurrentUser() != null) {
+    $('#login').click(function() {
+    	$('#login').attr('data-target', '');
+    	if (getUserSession(null) != null) {
     		logout();
-    		alert("Logged user out.");
     	}
     	else {
-    		$("#loginModal").modal("show");
+    		$('#loginModal').modal('show');
     	}
     });
     
-    //Sign Up Button
+    // Sign Up Button
     
 	$('#btnSignUp').click(function(){
-		if (($('#nul-inputEmail').val().length == 0) || ($('#nul-inputEmail').val().length == 0) || ($('#nul-inputPassword').val().length == 0)) {
+		// Are all of the form inputs filled out?
+		if (($('#nul-inputEmail').val().length < 0) || ($('#nul-inputUsername').val().length == 0) || ($('#nul-inputPassword').val().length == 0)) {
 			$('#nul-warning').text("You can't leave any fields blank.");
 		}
-		else if ($('#nul-inputPassword').val().length < 8) { //Work around for InvalidParameterException with passwords < 6 characters.
+		// Is the email address at least 5 characters and contains an '@'?
+		else if (($('#nul-inputEmail').val().length < 5) || !($('#nul-inputEmail').val().includes('@'))) {
+			$('#nul-warning').text("Please enter a valid email address.");
+		}
+		// Is the password at least 8 characters long?
+		else if ($('#nul-inputPassword').val().length < 8) { // Work around for InvalidParameterException with passwords < 6 characters.
 			$('#nul-warning').text("Passwords must be at least 8 characters in length.");
+		}
+		// Is there not already a user logged in?
+		else if (getUserSession(null) != null) {
+			$('#nul-warning').text("User already signed in.");
 		}
 		else {
 			register($('#nul-inputEmail').val(), $('#nul-inputUsername').val(), $('#nul-inputPassword').val());
 		}
 	});
 	
-	//Switch To Sign In Modal Button
-	
-	$('#switch-signin').click(function() {
-		$('#signup-div').css("display", "none");
-		$('#switch-signin').css("display", "none");
-		clearForm("nul-form");
-		$('#signin-div').css("display", "block");
-		$('#switch-signup').css("display", "inline-block");
-	});
-	
-	//Switch To Sign Up Modal Button
-	
-	$('#switch-signup').click(function() {
-		$('#signin-div').css("display", "none");
-		$('#switch-signup').css("display", "none");
-		clearForm("ul-form");
-		$('#signup-div').css("display", "block");
-		$('#switch-signin').css("display", "inline-block");
-	});
-	
-	//Sign In Button
+	// Sign In Button
 	
 	$('#btnSignIn').click(function() {
-		if (getPoolData().getCurrentUser() != null) {
-			$('#ul-warning').text("There is already a user logged in.");
-		}
-		else if (($('#ul-inputUsername').val().length == 0) || ($('#ul-inputPassword').val().length == 0)) {
+		// Are all of the form inputs filled out?
+		if (($('#ul-inputUsername').val().length == 0) || ($('#ul-inputPassword').val().length == 0)) {
 			$('#ul-warning').text("You can't leave any fields blank.");
 		}
-		else if ($('#ul-inputPassword').val().length < 6) { //Work around for InvalidParameterException with passwords < 6 characters.
+		// Is the password at least 8 characters long?
+		else if ($('#ul-inputPassword').val().length < 8) { // Work around for InvalidParameterException with passwords < 6 characters.
 			$('#ul-warning').text("Passwords must be at least 8 characters in length.");
 		}
+		// Is there not already a user signed in?
+		else if (getUserSession() != null) {
+			$('#ul-warning').text("There is already a user logged in.");
+		}
 		else {
-			login($("#ul-inputUsername").val(), $("#ul-inputPassword").val());
+			login($('#ul-inputUsername').val(), $('#ul-inputPassword').val());
 		}
 		
 	});
 	
-	//Close Button
+	// Switch To Sign In Modal Button
+	
+	$('#switch-signin').click(function() {
+		$('#signup-div').css('display', 'none');
+		$('#switch-signin').css('display', 'none');
+		clearElement('nul-form', 'form-control');
+		$('#signin-div').css('display', 'block');
+		$('#switch-signup').css('display', 'inline-block');
+	});
+	
+	// Switch To Sign Up Modal Button
+	
+	$('#switch-signup').click(function() {
+		$('#signin-div').css('display', 'none');
+		$('#switch-signup').css('display', 'none');
+		clearElement('ul-form', 'form-control');
+		$('#signup-div').css('display', 'block');
+		$('#switch-signin').css('display', 'inline-block');
+	});
+	
+	// Close Button
 	
 	$('#close').click(function () {
 		closeUserModal();
@@ -101,14 +122,22 @@ $(document).ready(function(){
 	
 });
 
-function clearForm(element) {
+/**
+ * Takes a parent element and clears class values within.
+ * 
+ */
+function clearElement(element, htmlClass) {
 	var elements = document.getElementById(element)
-	
-	for (var i = 0; i < elements.length; i++) {
-		if (elements[i].className == "form-control") {
-			elements[i].value = "";
-		}
-	}	
+	if (elements == null) {
+		console.log("Error in clearElement(element, htmlClass): " + element + " does not exist.");
+	}
+	else {
+		for (var i = 0; i < elements.length; i++) {
+			if (elements[i].className == htmlClass) {
+				elements[i].value = '';
+			}
+		}	
+	}
 }
 
 function signUpError(err) {
@@ -129,51 +158,56 @@ function signUpError(err) {
 }
 
 function signUpSuccess(user) {
-	$('#signin-div').css("display", "none");
-	$('#switch-signup').css("display", "none");
-	clearForm("nul-form");
-	$('#signup-div').css("display", "none");
-	$('#switch-signin').css("display", "none");
-	$("#verify-resend").css("display", "inline-block");
-	$("#verify-div").css("display", "block");
+	$('#signin-div').css('display', 'none');
+	$('#switch-signup').css('display', 'none');
+	clearElement('nul-form', 'form-control');
+	$('#signup-div').css('display', 'none');
+	$('#switch-signin').css('display', 'none');
+	$('#verify-resend').css('display', 'inline-block');
+	$('#verify-div').css('display', 'block');
 	
-	$("#verify-code-btn").click( function() {
-		var verificationCode = $("#verify-code-input").val();
+	$('#verify-code-btn').click( function() {
+		var verificationCode = $('#verify-code-input').val();
 		if (verificationCode.length == 0) {
 			
+		}
+		else if (getUserSession(null) != null) {
+			closeUserModal();
 		}
 		else {
 			confirmRegistration(user, verificationCode);
 		}
 	});
 	
-	$("#verify-resend").click( function() {
+	$('#verify-resend').click( function() {
 		resendConfirmation(user);
 	});
 }
 
 function verifySuccess() {
-	$('#signin-div').css("display", "block");
-	$('#switch-signup').css("display", "inline-block");
-	clearForm("verify-form");
-	$('#signup-div').css("display", "none");
-	$('#switch-signin').css("display", "none");
-	$("#verify-resend").css("display", "none");
-	$("#verify-div").css("display", "none");
+	$('#signin-div').css('display', 'block');
+	$('#switch-signup').css('display', 'inline-block');
+	clearElement('verify-form', 'form-control');
+	$('#signup-div').css('display', 'none');
+	$('#switch-signin').css('display', 'none');
+	$('#verify-resend').css('display', 'none');
+	$('#verify-div').css('display', 'none');
 	
 	$('#ul-warning').text("You successfully verified your email.");
 }
 
 function logInSuccess() {
 	closeUserModal();
+	$('#login').removeClass('btn-primary');
+	$('#login').addClass('btn-success');
 }
 
 function closeUserModal() {
-	clearForm('nul-form');
-	clearForm('ul-form');
+	clearElement('nul-form', 'form-control');
+	clearElement('ul-form', 'form-control');
 	$('#nul-warning').text('');
 	$('#ul-warning').text('');
-	$("#loginModal").modal("hide");
+	$('#loginModal').modal('hide');
 }
 
 function resizer(screenLen, elemLen) {
@@ -181,81 +215,81 @@ function resizer(screenLen, elemLen) {
     {
     	//Navbar Items
     	
-    	$('#advanced-search').css("display", "table");
-    	$('#ideo-tabs').css("display", "none");
-    	$('#quality-btns').css("display", "none");
+    	$('#advanced-search').css('display', 'table');
+    	$('#ideo-tabs').css('display', 'none');
+    	$('#quality-btns').css('display', 'none');
     	
-    	// $('#top-nav-wrapper').css("height", 110);
+    	// $('#top-nav-wrapper').css('height', 110);
     	
     	//Menu Items
     	
-    	$('#legit').css("display", "block");
-    	$('#fake').css("display", "block");
-    	$('#quality-sep').css("display", "list-item");
-    	$('#left').css("display", "block");
-    	$('#right').css("display", "block");
-    	$('#neutral').css("display", "block");
-    	$('#ideo-sep').css("display", "list-item");
+    	$('#legit').css('display', 'block');
+    	$('#fake').css('display', 'block');
+    	$('#quality-sep').css('display', 'list-item');
+    	$('#left').css('display', 'block');
+    	$('#right').css('display', 'block');
+    	$('#neutral').css('display', 'block');
+    	$('#ideo-sep').css('display', 'list-item');
     }
     else if (screenLen < 769 )
 	{
     	//Navbar Items
     	
-    	$('#advanced-search').css("display", "table");
-    	$('#ideo-tabs').css("display", "none");
-    	$('#quality-btns').css("display", "none");
+    	$('#advanced-search').css('display', 'table');
+    	$('#ideo-tabs').css('display', 'none');
+    	$('#quality-btns').css('display', 'none');
     	
-    	// $('#top-nav-wrapper').css("height", 60);
+    	// $('#top-nav-wrapper').css('height', 60);
     	
     	//Menu Items
     	
-    	$('#legit').css("display", "block");
-    	$('#fake').css("display", "block");
-    	$('#quality-sep').css("display", "list-item");
-    	$('#left').css("display", "block");
-    	$('#right').css("display", "block");
-    	$('#neutral').css("display", "block");
-    	$('#ideo-sep').css("display", "list-item");
+    	$('#legit').css('display', 'block');
+    	$('#fake').css('display', 'block');
+    	$('#quality-sep').css('display', 'list-item');
+    	$('#left').css('display', 'block');
+    	$('#right').css('display', 'block');
+    	$('#neutral').css('display', 'block');
+    	$('#ideo-sep').css('display', 'list-item');
 	}
     else if (screenLen < 932)
     {
     	//Navbar Items
     	
-    	$('#advanced-search').css("display", "table");
-    	$('#ideo-tabs').css("display", "initial");
-    	$('#quality-btns').css("display", "none");
+    	$('#advanced-search').css('display', 'table');
+    	$('#ideo-tabs').css('display', 'initial');
+    	$('#quality-btns').css('display', 'none');
     	
-    	// $('#top-nav-wrapper').css("height", 60);
+    	// $('#top-nav-wrapper').css('height', 60);
     	
     	//Menu Items
     	
-    	$('#legit').css("display", "block");
-    	$('#fake').css("display", "block");
-    	$('#quality-sep').css("display", "list-item");
-    	$('#left').css("display", "none");
-    	$('#right').css("display", "none");
-    	$('#neutral').css("display", "none");
-    	$('#ideo-sep').css("display", "none");
+    	$('#legit').css('display', 'block');
+    	$('#fake').css('display', 'block');
+    	$('#quality-sep').css('display', 'list-item');
+    	$('#left').css('display', 'none');
+    	$('#right').css('display', 'none');
+    	$('#neutral').css('display', 'none');
+    	$('#ideo-sep').css('display', 'none');
     }
     else
 	{
     	//Navbar Items
     	
-    	$('#advanced-search').css("display", "table");
-    	$('#ideo-tabs').css("display", "initial");
-    	$('#quality-btns').css("display", "initial");
+    	$('#advanced-search').css('display', 'table');
+    	$('#ideo-tabs').css('display', 'initial');
+    	$('#quality-btns').css('display', 'initial');
     	
-    	// $('#top-nav-wrapper').css("height", 60);
+    	// $('#top-nav-wrapper').css('height', 60);
     	
     	//Menu Items
     	
-    	$('#legit').css("display", "none");
-    	$('#fake').css("display", "none");
-    	$('#quality-sep').css("display", "none");
-    	$('#left').css("display", "none");
-    	$('#right').css("display", "none");
-    	$('#neutral').css("display", "none");
-    	$('#ideo-sep').css("display", "none");
+    	$('#legit').css('display', 'none');
+    	$('#fake').css('display', 'none');
+    	$('#quality-sep').css('display', 'none');
+    	$('#left').css('display', 'none');
+    	$('#right').css('display', 'none');
+    	$('#neutral').css('display', 'none');
+    	$('#ideo-sep').css('display', 'none');
 	}
 }
 
