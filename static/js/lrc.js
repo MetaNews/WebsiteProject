@@ -31,7 +31,14 @@ $(document).ready(function(){
     //User Sign In/Up Button
     
     $("#login").click(function() {
-    	//Check for user session
+    	$("#login").attr("data-target", "");
+    	if (getPoolData().getCurrentUser() != null) {
+    		logout();
+    		alert("Logged user out.");
+    	}
+    	else {
+    		$("#loginModal").modal("show");
+    	}
     });
     
     //Sign Up Button
@@ -71,14 +78,17 @@ $(document).ready(function(){
 	//Sign In Button
 	
 	$('#btnSignIn').click(function() {
-		if (($('#ul-inputUsername').val().length == 0) || ($('#ul-inputPassword').val().length == 0)) {
+		if (getPoolData().getCurrentUser() != null) {
+			$('#ul-warning').text("There is already a user logged in.");
+		}
+		else if (($('#ul-inputUsername').val().length == 0) || ($('#ul-inputPassword').val().length == 0)) {
 			$('#ul-warning').text("You can't leave any fields blank.");
 		}
 		else if ($('#ul-inputPassword').val().length < 6) { //Work around for InvalidParameterException with passwords < 6 characters.
 			$('#ul-warning').text("Passwords must be at least 8 characters in length.");
 		}
 		else {
-			login($('#ul-inputUsername').val(), $('#ul-inputPassword').val());
+			login($("#ul-inputUsername").val(), $("#ul-inputPassword").val());
 		}
 		
 	});
@@ -86,10 +96,7 @@ $(document).ready(function(){
 	//Close Button
 	
 	$('#close').click(function () {
-		clearForm('nul-form');
-		clearForm('ul-form');
-		$('#nul-warning').text('');
-		$('#ul-warning').text('');
+		closeUserModal();
 	});
 	
 });
@@ -155,6 +162,18 @@ function verifySuccess() {
 	$("#verify-div").css("display", "none");
 	
 	$('#ul-warning').text("You successfully verified your email.");
+}
+
+function logInSuccess() {
+	closeUserModal();
+}
+
+function closeUserModal() {
+	clearForm('nul-form');
+	clearForm('ul-form');
+	$('#nul-warning').text('');
+	$('#ul-warning').text('');
+	$("#loginModal").modal("hide");
 }
 
 function resizer(screenLen, elemLen) {
@@ -239,3 +258,4 @@ function resizer(screenLen, elemLen) {
     	$('#ideo-sep').css("display", "none");
 	}
 }
+
