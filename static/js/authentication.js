@@ -1,4 +1,4 @@
-document.writeln("<script type='text/javascript' src='../static/js/dependencies/pooldata.js'></script>");
+document.writeln("<script type='text/javascript' src='../static/js/pooldata.js'></script>");
 
 function register(email, user, password) {
   var userPool = getPoolData();
