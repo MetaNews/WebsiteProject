@@ -202,6 +202,10 @@ function logInSuccess() {
 	$('#login').addClass('btn-success');
 }
 
+function logInError() {
+	$('#ul-warning').text("Login Failed.");
+}
+
 function closeUserModal() {
 	clearElement('nul-form', 'form-control');
 	clearElement('ul-form', 'form-control');

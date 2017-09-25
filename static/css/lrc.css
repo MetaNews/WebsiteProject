@@ -185,11 +185,18 @@ body {
     border-top-right-radius: 0;
 }
 
+#nul-warning {
+	margin-top: 20px;
+	color: red;
+	font-size: 12px;
+	text-align: center;
+}
+
 #btnSignUp {
 	margin-top: 10px;
 }
 
-#nul-warning {
+#ul-warning {
 	margin-top: 20px;
 	color: red;
 	font-size: 12px;
