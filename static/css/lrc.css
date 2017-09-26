@@ -246,6 +246,14 @@ body {
 	display: none;
 }
 
+#deleteuser-div {
+	text-align: center;
+}
+
+#signout-user {
+	float: left;
+}
+
 /* ----- Arrow Box ----- */
 
 .arrow-box {
@@ -425,6 +433,7 @@ body {
 
 .article-tag {
 	float: right;
+	display: none !important; /* To be implemented Later */
 }
 
 .article-tag a {

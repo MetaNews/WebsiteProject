@@ -1,14 +1,9 @@
 $(document).ready(function(){
     resizer($('#top-nav').width(), 962);
     
-    if (getUserSession(null) != null) {
-    	$('#login').removeClass('btn-primary');
-    	$('#login').addClass('btn-success');
-    }
-    else {
-    	$('#login').removeClass('btn-success');
-    	$('#login').addClass('btn-primary');
-    }
+    // Update Login Button Color
+    
+    updateUserButton();
     
 	$(window).on('resize', function(){
 	    var win = $(this); //this = window
@@ -27,7 +22,7 @@ $(document).ready(function(){
     
     // Quality Buttons
         
-    $('#quality-btns button').click(function(){
+    $('#quality-btns button').click(function() {
     	if (!($(this).hasClass('active'))) {
         	$('.btn-group button').removeClass('active');
         	$(this).addClass('active');
@@ -42,11 +37,26 @@ $(document).ready(function(){
     $('#login').click(function() {
     	$('#login').attr('data-target', '');
     	if (getUserSession(null) != null) {
-    		logout();
+    		updateUserModal();
+    		$('#userModal').modal('show');
     	}
     	else {
     		$('#loginModal').modal('show');
     	}
+    });
+    
+    // Sign Out Button
+    
+    $('#signout-user').click(function() {
+    	if (getUserSession(null) != null) {
+    		logout();
+    	}
+    	else {
+    		alert("User Session Not Found.");
+    	}
+    	updateUserButton();
+		$('#userModal').modal('hide');
+
     });
     
     // Sign Up Button
@@ -114,11 +124,17 @@ $(document).ready(function(){
 		$('#switch-signin').css('display', 'inline-block');
 	});
 	
-	// Close Button
+	// Log In/Up Close Button
 	
-	$('#close').click(function () {
-		closeUserModal();
+	$('#login-close').click(function() {
+		closeLoginModal();
 	});
+	
+	// Delete User Button
+	
+	$('#deleteuser-btn').click(function() {
+		deleteUser();
+	})
 	
 });
 
@@ -172,7 +188,7 @@ function signUpSuccess(user) {
 			
 		}
 		else if (getUserSession(null) != null) {
-			closeUserModal();
+			closeLoginModal();
 		}
 		else {
 			confirmRegistration(user, verificationCode);
@@ -197,7 +213,7 @@ function verifySuccess() {
 }
 
 function logInSuccess() {
-	closeUserModal();
+	closeLoginModal();
 	$('#login').removeClass('btn-primary');
 	$('#login').addClass('btn-success');
 }
@@ -206,12 +222,30 @@ function logInError() {
 	$('#ul-warning').text("Login Failed.");
 }
 
-function closeUserModal() {
+function closeLoginModal() {
 	clearElement('nul-form', 'form-control');
 	clearElement('ul-form', 'form-control');
 	$('#nul-warning').text('');
 	$('#ul-warning').text('');
 	$('#loginModal').modal('hide');
+}
+
+function updateUserModal() {
+	var User = getUserSession(null);
+	if (User != null) {
+		$('#username-h4').text("User: " + User.getUsername());
+	}
+}
+
+function updateUserButton() {
+    if (getUserSession(null) != null) {
+    	$('#login').removeClass('btn-primary');
+    	$('#login').addClass('btn-success');
+    }
+    else {
+    	$('#login').removeClass('btn-success');
+    	$('#login').addClass('btn-primary');
+    }
 }
 
 function resizer(screenLen, elemLen) {
