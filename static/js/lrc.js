@@ -222,9 +222,7 @@ function resizer(screenLen, elemLen) {
     	$('#advanced-search').css('display', 'table');
     	$('#ideo-tabs').css('display', 'none');
     	$('#quality-btns').css('display', 'none');
-    	
-    	// $('#top-nav-wrapper').css('height', 110);
-    	
+    	    	
     	//Menu Items
     	
     	$('#legit').css('display', 'block');
@@ -242,9 +240,7 @@ function resizer(screenLen, elemLen) {
     	$('#advanced-search').css('display', 'table');
     	$('#ideo-tabs').css('display', 'none');
     	$('#quality-btns').css('display', 'none');
-    	
-    	// $('#top-nav-wrapper').css('height', 60);
-    	
+    	    	
     	//Menu Items
     	
     	$('#legit').css('display', 'block');
@@ -262,9 +258,7 @@ function resizer(screenLen, elemLen) {
     	$('#advanced-search').css('display', 'table');
     	$('#ideo-tabs').css('display', 'initial');
     	$('#quality-btns').css('display', 'none');
-    	
-    	// $('#top-nav-wrapper').css('height', 60);
-    	
+    	    	
     	//Menu Items
     	
     	$('#legit').css('display', 'block');
@@ -282,9 +276,7 @@ function resizer(screenLen, elemLen) {
     	$('#advanced-search').css('display', 'table');
     	$('#ideo-tabs').css('display', 'initial');
     	$('#quality-btns').css('display', 'initial');
-    	
-    	// $('#top-nav-wrapper').css('height', 60);
-    	
+    	    	
     	//Menu Items
     	
     	$('#legit').css('display', 'none');

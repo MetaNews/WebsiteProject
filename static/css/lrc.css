@@ -176,8 +176,6 @@ body {
 }
 
 #nul-inputEmail {
-    margin-top: -1px;
-    margin-bottom: -1px;
     border-radius: 0px;
 }
 #nul-inputPassword {
@@ -226,7 +224,6 @@ body {
 #ul-inputPassword {
 	border-top-right-radius: 0px;
 	border-top-left-radius: 0px;
-	margin-top: -1px;
 }
 
 #btnSignIn {
