@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function() {
     resizer($('#top-nav').width(), 962);
     
     // Update Login Button Color
@@ -107,21 +107,13 @@ $(document).ready(function(){
 	// Switch To Sign In Modal Button
 	
 	$('#switch-signin').click(function() {
-		$('#signup-div').css('display', 'none');
-		$('#switch-signin').css('display', 'none');
-		clearElement('nul-form', 'form-control');
-		$('#signin-div').css('display', 'block');
-		$('#switch-signup').css('display', 'inline-block');
+		showSignin();
 	});
 	
 	// Switch To Sign Up Modal Button
 	
 	$('#switch-signup').click(function() {
-		$('#signin-div').css('display', 'none');
-		$('#switch-signup').css('display', 'none');
-		clearElement('ul-form', 'form-control');
-		$('#signup-div').css('display', 'block');
-		$('#switch-signin').css('display', 'inline-block');
+		showSignup();
 	});
 	
 	// Log In/Up Close Button
@@ -134,6 +126,8 @@ $(document).ready(function(){
 	
 	$('#deleteuser-btn').click(function() {
 		deleteUser();
+		// updateUserButton();
+		$('#userModal').modal('hide');
 	})
 	
 });
@@ -173,14 +167,16 @@ function signUpError(err) {
 	}
 }
 
+/**
+ * Called when a user has succesfully added a username, email,
+ * and password, and a verification email has been sent to them. Allows
+ * them to verify their email.
+ * 
+ * @param {CognitoUser} user 
+ * @returns {void}
+ */
 function signUpSuccess(user) {
-	$('#signin-div').css('display', 'none');
-	$('#switch-signup').css('display', 'none');
-	clearElement('nul-form', 'form-control');
-	$('#signup-div').css('display', 'none');
-	$('#switch-signin').css('display', 'none');
-	$('#verify-resend').css('display', 'inline-block');
-	$('#verify-div').css('display', 'block');
+	showVerify();
 	
 	$('#verify-code-btn').click( function() {
 		var verificationCode = $('#verify-code-input').val();
@@ -200,36 +196,67 @@ function signUpSuccess(user) {
 	});
 }
 
+/**
+ * Called when the user has just succesfully verified their email. It
+ * displays the signin view of the login modal.
+ * 
+ * @returns {void}
+ */
 function verifySuccess() {
-	$('#signin-div').css('display', 'block');
-	$('#switch-signup').css('display', 'inline-block');
-	clearElement('verify-form', 'form-control');
-	$('#signup-div').css('display', 'none');
-	$('#switch-signin').css('display', 'none');
-	$('#verify-resend').css('display', 'none');
-	$('#verify-div').css('display', 'none');
-	
-	$('#ul-warning').text("You successfully verified your email.");
+	showSignin();
+	$('#ul-warning').text("You have successfully verified your email.");
 }
 
-function logInSuccess() {
+/**
+ * Called when login is succesful. Hides the login modal, and 
+ * updates the user button.
+ * 
+ * @returns {void}
+ */
+function loginSuccess() {
 	closeLoginModal();
-	$('#login').removeClass('btn-primary');
-	$('#login').addClass('btn-success');
+	updateUserButton();
 }
 
-function logInError() {
-	$('#ul-warning').text("Login Failed.");
+/**
+ * Called when something is causing a login error. Displays the
+ * appropriate error message or allows a user to verify their email.
+ * 
+ * @param {nodeCallback<String>} err error message
+ * @returns {void}
+ */
+function loginError(err) {
+	switch (err.code) {
+		case "UserNotFoundException":
+			$('#ul-warning').text(err.message);
+			break;
+		case "UserNotConfirmedException":
+			$('#ul-warning').text(err.message);
+			break;
+		default:
+			alert(err);
+			break;
+	}
 }
 
+/**
+ * Clears forms and warnings, and then hides the login modal.
+ * 
+ * @returns {void}
+ */
 function closeLoginModal() {
 	clearElement('nul-form', 'form-control');
 	clearElement('ul-form', 'form-control');
+	clearElement('verify-form', 'form-control');
 	$('#nul-warning').text('');
 	$('#ul-warning').text('');
 	$('#loginModal').modal('hide');
 }
 
+/**
+ * Adds user values to the user modal.
+ * 
+ */
 function updateUserModal() {
 	var User = getUserSession(null);
 	if (User != null) {
@@ -237,6 +264,12 @@ function updateUserModal() {
 	}
 }
 
+/**
+ * Changes the user button to the appropriate type - blue
+ * if no user is logged in, green otherwise.
+ * 
+ * @returns {void}
+ */
 function updateUserButton() {
     if (getUserSession(null) != null) {
     	$('#login').removeClass('btn-primary');
@@ -246,6 +279,57 @@ function updateUserButton() {
     	$('#login').removeClass('btn-success');
     	$('#login').addClass('btn-primary');
     }
+}
+
+/**
+ * Hides and clears all of the nonessential buttons/forms within
+ * the Login Modal - signin, signup, and verify.
+ * 
+ * @returns {void}
+ */
+function hideLoginModal() {
+	clearElement('nul-form', 'form-control');
+	clearElement('ul-form', 'form-control');
+	clearElement('verify-form', 'form-control');
+	$('#signup-div').css('display', 'none');
+	$('#switch-signin').css('display', 'none');
+	$('#signin-div').css('display', 'none');
+	$('#switch-signup').css('display', 'none');
+	$('#verify-resend').css('display', 'none');
+	$('#verify-div').css('display', 'none');
+}
+
+/**
+ * Switches the login modal to the signin view.
+ *  
+ * @returns {void}
+ */
+function showSignin() {
+	hideLoginModal();
+	$('#signin-div').css('display', 'block');
+	$('#switch-signup').css('display', 'inline-block');
+}
+
+/**
+ * Switches the login modal to the signup view.
+ * 
+ * @returns {void}
+ */
+function showSignup() {
+	hideLoginModal();
+	$('#signup-div').css('display', 'block');
+	$('#switch-signin').css('display', 'inline-block');
+}
+
+/**
+ * Switches the login modal to the verify view.
+ * 
+ * @returns {void}
+ */
+function showVerify() {
+	hideLoginModal();
+	$('#verify-resend').css('display', 'inline-block');
+	$('#verify-div').css('display', 'block');
 }
 
 function resizer(screenLen, elemLen) {

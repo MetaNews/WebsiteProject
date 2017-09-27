@@ -45,12 +45,12 @@ function login(user, password) {
   cognitoUser.authenticateUser(authenticationDetails, {
     onSuccess: function(result) {
       console.log("authentication successful!");
-      logInSuccess();
+      loginSuccess();
     },
 
     onFailure: function(err) {
       console.log(err);
-      logInError();
+      loginError(err);
     }
   });
 }
@@ -240,6 +240,8 @@ function forgetThisDevice() {
 function deleteUser() {
   var userPool = getPoolData();
 
+  // A lot of this code seems redudant?
+  
   var cognitoUser = userPool.getCurrentUser();
   if (userPool.getCurrentUser() != null) {
     cognitoUser.getSession(function(err, session) {
