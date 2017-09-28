@@ -183,18 +183,11 @@ body {
     border-top-right-radius: 0;
 }
 
-#nul-warning {
-	margin-top: 20px;
-	color: red;
-	font-size: 12px;
-	text-align: center;
-}
-
-#btnSignUp {
+.btn-modal {
 	margin-top: 10px;
 }
 
-#ul-warning {
+.modal-warning {
 	margin-top: 20px;
 	color: red;
 	font-size: 12px;
@@ -211,6 +204,14 @@ body {
 	display: none;
 }
 
+#forgotpw-switch {
+	display: none;
+}
+
+#login-close {
+	float: right;
+}
+
 #verify-resend {
 	display: none;
 	float: left;
@@ -224,10 +225,6 @@ body {
 #ul-inputPassword {
 	border-top-right-radius: 0px;
 	border-top-left-radius: 0px;
-}
-
-#btnSignIn {
-	margin-top: 10px;
 }
 
 #signin-div {
@@ -254,6 +251,14 @@ body {
 	float: left;
 }
 
+#forgotpw-div {
+	display: none;
+}
+
+.modal-footer {
+	text-align: center;
+}
+	
 /* ----- Arrow Box ----- */
 
 .arrow-box {

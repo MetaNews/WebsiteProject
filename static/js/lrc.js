@@ -41,6 +41,7 @@ $(document).ready(function() {
     		$('#userModal').modal('show');
     	}
     	else {
+    		showSignup();
     		$('#loginModal').modal('show');
     	}
     });
@@ -104,6 +105,23 @@ $(document).ready(function() {
 		
 	});
 	
+	// Switch to forgot PW modal button
+	
+	$('#forgotpw-switch').click(function() {
+		showForgotPW();
+	});
+	
+	// Forgot password Button
+	
+	$('#forgotpw-button').click(function() {		
+		if ($('#forgotpw-input').val().length < 1) {
+			$('#forgotpw-warning').text('Please enter your username.');
+		}
+		else {
+			forgotPassword($('#forgotpw-input').val());
+		}
+	});
+	
 	// Switch To Sign In Modal Button
 	
 	$('#switch-signin').click(function() {
@@ -135,6 +153,9 @@ $(document).ready(function() {
 /**
  * Takes a parent element and clears class values within.
  * 
+ * @param String element the id of the form element
+ * @param String htmlClass the class
+ * @returns {void}
  */
 function clearElement(element, htmlClass) {
 	var elements = document.getElementById(element)
@@ -150,6 +171,13 @@ function clearElement(element, htmlClass) {
 	}
 }
 
+/**
+ * Called when there is some error with the sign up. Displays the 
+ * proper warning.
+ * 
+ * @param Error err
+ * @returns {void}
+ */
 function signUpError(err) {
 	switch (err) {
 		case "UsernameExistsException":
@@ -240,22 +268,41 @@ function loginError(err) {
 }
 
 /**
+ * Called when there is some error preventing an inputted verification
+ * code from activating an account.
+ * 
+ * @param {Error} err
+ * @returns {void}
+ */
+function verifyError(err) {
+	$('#verify-warning').text(err.message);
+}
+
+/**
+ * Called when something is preventing a user from reseting their password.
+ * Shows the appropriate error message.
+ * 
+ * @param Error err
+ * @returns {void}
+ */
+function forgotPasswordError(err) {
+	$('#forgotpw-warning').text(err.message);
+}
+
+/**
  * Clears forms and warnings, and then hides the login modal.
  * 
  * @returns {void}
  */
 function closeLoginModal() {
-	clearElement('nul-form', 'form-control');
-	clearElement('ul-form', 'form-control');
-	clearElement('verify-form', 'form-control');
-	$('#nul-warning').text('');
-	$('#ul-warning').text('');
 	$('#loginModal').modal('hide');
+	emptyLoginModal();
 }
 
 /**
  * Adds user values to the user modal.
  * 
+ * @returns {void}
  */
 function updateUserModal() {
 	var User = getUserSession(null);
@@ -287,16 +334,30 @@ function updateUserButton() {
  * 
  * @returns {void}
  */
-function hideLoginModal() {
+function emptyLoginModal() {
+	// Empty sign up
 	clearElement('nul-form', 'form-control');
-	clearElement('ul-form', 'form-control');
-	clearElement('verify-form', 'form-control');
 	$('#signup-div').css('display', 'none');
 	$('#switch-signin').css('display', 'none');
+	$('#nul-warning').text('');
+	
+	// Empty sign in
+	clearElement('ul-form', 'form-control');
 	$('#signin-div').css('display', 'none');
 	$('#switch-signup').css('display', 'none');
+	$('#ul-warning').text('');
+	
+	// Empty verify email
+	clearElement('verify-form', 'form-control');
 	$('#verify-resend').css('display', 'none');
 	$('#verify-div').css('display', 'none');
+	$('#verify-warning').text('');
+	
+	// Empty forgotpw
+	clearElement('forgotpw-form', 'form-control');
+	$('#forgotpw-div').css('display', 'none');
+	$('#forgotpw-switch').css('display', 'none');
+	$('#forgotpw-warning').text('');
 }
 
 /**
@@ -305,9 +366,10 @@ function hideLoginModal() {
  * @returns {void}
  */
 function showSignin() {
-	hideLoginModal();
+	emptyLoginModal();
 	$('#signin-div').css('display', 'block');
 	$('#switch-signup').css('display', 'inline-block');
+	$('#forgotpw-switch').css('display', 'inline-block');
 }
 
 /**
@@ -316,7 +378,7 @@ function showSignin() {
  * @returns {void}
  */
 function showSignup() {
-	hideLoginModal();
+	emptyLoginModal();
 	$('#signup-div').css('display', 'block');
 	$('#switch-signin').css('display', 'inline-block');
 }
@@ -327,9 +389,20 @@ function showSignup() {
  * @returns {void}
  */
 function showVerify() {
-	hideLoginModal();
+	emptyLoginModal();
 	$('#verify-resend').css('display', 'inline-block');
 	$('#verify-div').css('display', 'block');
+}
+
+/**
+ * Switches the login modal to the forgotpw view.
+ * 
+ * @returns {void}
+ */
+function showForgotPW() {
+	emptyLoginModal();
+	$('#forgotpw-div').css('display', 'block');
+	$('#switch-signin').css('display', 'inline-block');
 }
 
 function resizer(screenLen, elemLen) {

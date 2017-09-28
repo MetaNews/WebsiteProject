@@ -80,14 +80,17 @@ function confirmRegistration(user, confirmValue) {
     Username: user,
     Pool: userPool
   };
+  
   var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
   cognitoUser.confirmRegistration(confirmValue, true, function(err, result) {
     if (err) {
-      alert(err);
-      return;
+    	console.log(err);
+		verifyError(err);
     }
-    console.log('call result: ' + result);
-    verifySuccess();
+    else {
+    	console.log('call result: ' + result);
+        verifySuccess();
+    }
   });
 }
 
@@ -148,6 +151,11 @@ function updatePassword(oldpassword, newpassword) {
   }
 }
 
+/**
+ * 
+ * @param String user
+ * @returns {void}
+ */
 function forgotPassword(user) {
   var userPool = getPoolData();
 
@@ -155,19 +163,16 @@ function forgotPassword(user) {
     Username: user,
     Pool: userPool
   };
+  
   var cognitoUser = new AWSCognito.CognitoIdentityServiceProvider.CognitoUser(userData);
   cognitoUser.forgotPassword({
     onSuccess: function(result) {
       console.log('call result: ' + result);
+      forgotPasswordSuccess();
     },
     onFailure: function(err) {
-      alert(err);
+      forgotPasswordError(err);
     },
-    inputVerificationCode() {
-      var verificationCode = prompt('Please input verification code ', '');
-      var newPassword = prompt('Enter new password ', '');
-      cognitoUser.confirmPassword(verificationCode, newPassword, this);
-    }
   });
 }
 
@@ -264,7 +269,8 @@ function deleteUser() {
 /**
  * Checks for a valid user session.
  * 
- * @returns current user
+ * @param {CognitoUser} NOT ACTUALLY BEING USED ATM
+ * @returns {CognitoUser} current user
  */
 function getUserSession(user) {
 	var userPool = getPoolData();

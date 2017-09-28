@@ -182,7 +182,7 @@
 				    </div>
 				    <div class="modal-body">
 				    	<div id="signup-div" class="modal-div">
-				    		<h4>New User Sign Up</h4>
+				    		<h4>Sign Up</h4>
 				    		<form class="form-signup" id="nul-form">
 				    			<label for="inputUsername" class="sr-only">Username</label>
 				    			<input type="username" name="nul-inputUsername" id="nul-inputUsername" class="form-control" placeholder="Username">
@@ -190,19 +190,19 @@
 				    			<input type="email" name="nul-inputEmail" id="nul-inputEmail" class="form-control" placeholder="Email">
 				    			<label for="inputPassword" class="sr-only">Password</label>
 				    			<input type="password" name="nul-inputPassword" id="nul-inputPassword" class="form-control" placeholder="Password">
-				    			<p id="nul-warning"></p>
-				    			<button id='btnSignUp' type="button" class="btn btn-primary">Sign Up</button>
+				    			<p id="nul-warning" class="modal-warning"></p>
+				    			<button id='btnSignUp' type="button" class="btn btn-primary btn-modal">Sign Up</button>
 				    		</form>
 				    	</div>
 				    	<div id="signin-div" class="modal-div">
-				    		<h4>User Sign In</h4>
+				    		<h4>Sign In</h4>
 				    		<form class="form-signup" id="ul-form">
 				    			<label for="inputUsername" class="sr-only">Username</label>
 				    			<input type="username" name="ul-inputUsername" id="ul-inputUsername" class="form-control" placeholder="Username">
 				    			<label for="inputPassword" class="sr-only">Password</label>
 				    			<input type="password" name="ul-inputPassword" id="ul-inputPassword" class="form-control" placeholder="Password">
-				    			<p id="ul-warning"></p>
-				    			<button id='btnSignIn' type="button" class="btn btn-primary">Sign In</button>
+				    			<p id="ul-warning" class="modal-warning"></p>
+				    			<button id='btnSignIn' type="button" class="btn btn-primary btn-modal">Sign In</button>
 				    		</form>
 				    	</div>
 				    	<div id="verify-div" class="modal-div">
@@ -210,7 +210,17 @@
 				    		<form class="form-signup" id="verify-form">
 				    			<label for="input-code" class="sr-only">Authentication Code</label>
 				    			<input type="code" name="verify-code-input" id="verify-code-input" class="form-control" placeholder="Authentication Code">
+				    			<p id="verify-warning" class="modal-warning"></p>
 				    			<button id="verify-code-btn" type="button" class="btn btn-primary">Verify</button>
+				    		</form>
+				    	</div>
+				    	<div id="forgotpw-div" class="modal-div">
+				    		<h4>Forgot Your Password?</h4>
+				    		<form id="forgotpw-form" class="form-signup" >
+				    			<label for="inputUsername" class="sr-only">Username</label>
+				    			<input id="forgotpw-input" type="username" name="forgotpw-inputUsername" class="form-control" placeholder="Username">
+				    		    <p id="forgotpw-warning" class="modal-warning"></p>
+				    			<button id='forgotpw-button' type="button" class="btn btn-primary btn-modal">Reset Password</button>
 				    		</form>
 				    	</div>
 			    	</div>
@@ -218,6 +228,7 @@
 				    	<button id="switch-signin" type="button" class="btn btn-default">Sign In</button>
 				    	<button id="switch-signup" type="button" class="btn btn-default">Sign Up</button>
 				    	<button id="verify-resend" type="button" class="btn btn-default">Get New Code</button>
+				    		<button id="forgotpw-switch" type="button" class="btn btn-default">Forgot Password</button>	
 				        <button id="login-close" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				    </div>
 				</div>
