@@ -63,6 +63,7 @@ $(document).ready(function() {
     // Sign Up Button
     
 	$('#btnSignUp').click(function(){
+		$('#nul-warning').text('');
 		// Are all of the form inputs filled out?
 		if (($('#nul-inputEmail').val().length < 0) || ($('#nul-inputUsername').val().length == 0) || ($('#nul-inputPassword').val().length == 0)) {
 			$('#nul-warning').text("You can't leave any fields blank.");
@@ -82,11 +83,13 @@ $(document).ready(function() {
 		else {
 			register($('#nul-inputEmail').val(), $('#nul-inputUsername').val(), $('#nul-inputPassword').val());
 		}
+		$('#nul-inputPassword').text('');
 	});
 	
 	// Sign In Button
 	
 	$('#btnSignIn').click(function() {
+		$('#ul-warning').text('');
 		// Are all of the form inputs filled out?
 		if (($('#ul-inputUsername').val().length == 0) || ($('#ul-inputPassword').val().length == 0)) {
 			$('#ul-warning').text("You can't leave any fields blank.");
@@ -102,7 +105,7 @@ $(document).ready(function() {
 		else {
 			login($('#ul-inputUsername').val(), $('#ul-inputPassword').val());
 		}
-		
+		$('#ul-inputPassword').val('');
 	});
 	
 	// Switch to forgot PW modal button
@@ -118,6 +121,7 @@ $(document).ready(function() {
 			$('#forgotpw-warning').text('Please enter your username.');
 		}
 		else {
+			$('#forgotpw-warning').text('');
 			forgotPassword($('#forgotpw-input').val());
 		}
 	});
@@ -196,7 +200,7 @@ function signUpError(err) {
 }
 
 /**
- * Called when a user has succesfully added a username, email,
+ * Called when a user has successfully added a username, email,
  * and password, and a verification email has been sent to them. Allows
  * them to verify their email.
  * 
@@ -261,6 +265,9 @@ function loginError(err) {
 		case "UserNotConfirmedException":
 			$('#ul-warning').text(err.message);
 			break;
+		case "NotAuthorizedException":
+			$('#ul-warning').text(err.message);
+			break;
 		default:
 			alert(err);
 			break;
@@ -276,6 +283,16 @@ function loginError(err) {
  */
 function verifyError(err) {
 	$('#verify-warning').text(err.message);
+}
+
+/**
+ * Called when the user makes a successful request to reset their
+ * password.
+ * 
+ * @returns {void}
+ */
+function forgotPasswordSuccess() {
+	
 }
 
 /**

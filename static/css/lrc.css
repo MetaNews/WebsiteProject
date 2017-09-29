@@ -187,6 +187,10 @@ body {
 	margin-top: 10px;
 }
 
+.btn-close-modal {
+	float: right;
+}
+
 .modal-warning {
 	margin-top: 20px;
 	color: red;
@@ -206,10 +210,6 @@ body {
 
 #forgotpw-switch {
 	display: none;
-}
-
-#login-close {
-	float: right;
 }
 
 #verify-resend {
