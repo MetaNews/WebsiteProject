@@ -2,6 +2,22 @@ body {
 	font-family: verdana;
 }
 
+.navbar-collapse.collapse {
+  display: inline-block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+  float: left !important;
+}
+
+.navbar-right {
+  float: right!important;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  margin-right: 0px;
+}
+
 .shadow-container {
 	border: 1px solid silver;
 	overflow: hidden;
@@ -16,6 +32,7 @@ body {
 	position: relative;
 	background-color: #484848;
 	padding-top:20px;
+	min-height: 71.4px
 }
 
 .navbar-brand {
@@ -52,8 +69,9 @@ body {
 }
 
 #ideo-tabs {
-	position: relative;
-	bottom: -11px;
+	position: absolute;
+	bottom: 0px;
+	left: 148px;
 }
 
 .nav-tabs li a {
@@ -89,7 +107,7 @@ body {
 	border-bottom-color: transparent;
 	border-top-left-radius: 8px;
 	border-top-right-radius: 8px;
-	box-shadow: 2px 0 0 0 black;
+	box-shadow: 2px -.3px 0 0 black; 
 }
 
 #quality-btns {
@@ -128,6 +146,8 @@ body {
 
 .navbar-form {
 	 box-shadow: none;
+	 padding: 0px;
+	 margin-right: 0px
 }
 
 #search-menu-btn {

@@ -1,22 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 	<head>
-		<title>Meta News</title>
+		<!-- Titles -->
+	
+		<title>News</title>
+		<link rel="icon" href="../pictures/LRCLogo.png"/>
+		
+		<!-- Styles -->
+		
   		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link href="../static/css/index.css" rel="stylesheet">
+  		
+		<link rel="stylesheet" href="../static/css/lrc.css">
+		<link rel="stylesheet" href="../static/css/article.css">
+				
+		<!-- Navigation Scripts -->
+		
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		<script src="../static/js/index.js"></script>
+		<script src="../static/js/lrc.js"></script>
+		
+		<!-- Authentication Scripts -->
+		
+		<script src="../static/js/dependencies/aws-sdk-2.49.0.min.js"></script>
+		<script src="../static/js/dependencies/aws-cognito-sdk.min.js"></script>
+		<script src="../static/js/dependencies/amazon-cognito-identity.min.js"></script>
+		<script src="../static/js/authentication.js"></script>
+	
 	</head>
 	<body>
 		<div id="top-nav-wrapper" class="navbar navbar-fixed-top">
 			<div id="top-nav" class ="container-fluid">
 				<div class="dropdown navbar-left" id="main-menu">
-					<button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false">Meta News <span class="caret"></span></button>
+					<button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false">MetaNews <span class="caret"></span></button>
 					<ul class="dropdown-menu dropdown-menu-left navbar-left" role="menu">
-						<li><a href="#recommended">Recommended</a></li>
-						<li class="active"><a href="#popular">Popular</a></li>
-						<li><a href="#new">New</a></li>
+						<li><a href="index.html">Recommended</a></li>
+						<li class="active"><a href="index.html">Popular</a></li>
+						<li><a href="index.html">New</a></li>
 						<li id="ideo-sep"role="seperator" class="divider"></li>
 						<li id="left"><a href="#left"><span class="glyphicon glyphicon-chevron-left"></span> Left</a></li>
 						<li id="neutral" class="active"><a href="#neutral">Neutral</a></li>
@@ -47,15 +66,11 @@
 										<li><a href="#">Publishers</a></li>
 									</ul>
 									<button id="search" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-									<button id="login" type="button" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
+									<button id="login" type="button" class="btn btn-primary" data-toggle="modal"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div id="quality-btns" class="btn-group navbar-right" data-toggle="buttons">
-					<button class="btn btn-basic" aria-pressed="true">Legit</button>
-					<button class="btn btn-basic active">Fake News</button>
 				</div>
 			</div>
 		</div>
@@ -63,8 +78,8 @@
 			<div class="row">
 				<div class="col-sm-1">
 				</div>
-				<div class="col-sm-9">
-					<div class="article-container">
+				<div class="col-sm-9" id="article-area">
+					<div class="shadow-container article-container">
 						<div class="arrow-box">
 							<div class="left-arrow">
 								<a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -72,7 +87,7 @@
 							<div class="up-down-arrows-wrapper">
 								<ul class="list-group up-down-arrows">
 									<li><a href="#" ><span class="glyphicon glyphicon-chevron-up"></span></a>
-									<li>999</li>
+									<li>0</li>
 									<li><a href="#" ><span class="glyphicon glyphicon-chevron-down"></span></a>
 								</ul>
 							</div>
@@ -95,19 +110,108 @@
 						<div class="article-box container-fluid">
 							<div class="article-title">
 								<a href="http://i.imgur.com/CBe8OPH.jpg">Instrument. If you upvote this it will show up on google images when people search "instrument" .</a>
+								<hr>
 							</div>
 						</div>
-						<div class="info-box container-fluid">
-							<ul class="list-inline">
+						<div class="info-box">
+							<ul class="list-inline block-list">
 								<li><a href="#">CNN</a></li>
 								<li><a href="#">Geraldo Rivera</a></li>
-								<li><a href="#">69 Comments</a>
+								<li style="float:right;"><a href="article.html">0 <span class="glyphicon glyphicon-comment"></span></a>
+								<li class="article-tag"><a data-toggle="modal" data-target="#tagModal">Clickbait</a></li>
+								<li class="article-tag"><a data-toggle="modal" data-target="#tagModal">Misleading Title</a></li>
 							</ul>
 						</div>
 					</div>
 			    </div>
-			    <div class="col-sm-2">
+				<div class="col-sm-2">
 			    </div>
+			</div>
+		</div>
+		<div id="loginModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				    <div class="modal-header">
+				        <button type="button" class="close btn-close-modal" data-dismiss="modal">&times;</button>
+				        <h3 class="modal-title">MetaNews</h3>
+				    </div>
+				    <div class="modal-body">
+				    	<div id="signup-div" class="modal-div">
+				    		<h4>Sign Up</h4>
+				    		<form class="form-signup" id="nul-form">
+				    			<label for="inputUsername" class="sr-only">Username</label>
+				    			<input type="username" name="nul-inputUsername" id="nul-inputUsername" class="form-control" placeholder="Username">
+				    			<label for="inputEmail" class="sr-only">Email</label>
+				    			<input type="email" name="nul-inputEmail" id="nul-inputEmail" class="form-control" placeholder="Email">
+				    			<label for="inputPassword" class="sr-only">Password</label>
+				    			<input type="password" name="nul-inputPassword" id="nul-inputPassword" class="form-control" placeholder="Password">
+				    			<p id="nul-warning" class="modal-warning"></p>
+				    			<button id='btnSignUp' type="button" class="btn btn-primary btn-modal">Sign Up</button>
+				    		</form>
+				    	</div>
+				    	<div id="signin-div" class="modal-div">
+				    		<h4>Sign In</h4>
+				    		<form class="form-signup" id="ul-form">
+				    			<label for="inputUsername" class="sr-only">Username</label>
+				    			<input type="username" name="ul-inputUsername" id="ul-inputUsername" class="form-control" placeholder="Username">
+				    			<label for="inputPassword" class="sr-only">Password</label>
+				    			<input type="password" name="ul-inputPassword" id="ul-inputPassword" class="form-control" placeholder="Password">
+				    			<p id="ul-warning" class="modal-warning"></p>
+				    			<button id='btnSignIn' type="button" class="btn btn-primary btn-modal">Sign In</button>
+				    		</form>
+				    	</div>
+				    	<div id="verify-div" class="modal-div">
+				    		<h4>Verify Your Email</h4>
+				    		<form class="form-signup" id="verify-form">
+				    			<label for="input-code" class="sr-only">Authentication Code</label>
+				    			<input type="code" name="verify-code-input" id="verify-code-input" class="form-control" placeholder="Authentication Code">
+				    			<p id="verify-warning" class="modal-warning"></p>
+				    			<button id="verify-code-btn" type="button" class="btn btn-primary">Verify</button>
+				    		</form>
+				    	</div>
+				    	<div id="forgotpw-div" class="modal-div">
+				    		<h4>Forgot Your Password?</h4>
+				    		<form id="forgotpw-form" class="form-signup" >
+				    			<label for="inputUsername" class="sr-only">Username</label>
+				    			<input id="forgotpw-input" type="username" name="forgotpw-inputUsername" class="form-control" placeholder="Username">
+				    		    <p id="forgotpw-warning" class="modal-warning"></p>
+				    			<button id='forgotpw-button' type="button" class="btn btn-primary btn-modal">Reset Password</button>
+				    		</form>
+				    	</div>
+			    	</div>
+				    <div class="modal-footer">
+				    	<button id="switch-signin" type="button" class="btn btn-default">Sign In</button>
+				    	<button id="switch-signup" type="button" class="btn btn-default">Sign Up</button>
+				    	<button id="verify-resend" type="button" class="btn btn-default">Get New Code</button>
+				    		<button id="forgotpw-switch" type="button" class="btn btn-default">Forgot Password</button>	
+				        <button id="login-close" type="button" class="btn btn-default btn-close-modal" data-dismiss="modal">Close</button>
+				    </div>
+				</div>
+			</div>
+		</div>
+		<div id="userModal" class="modal fade" role=dialog>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+				    	<button type="button" class="close" data-dismiss="modal">&times;</button>
+				   		<h3 class="modal-title">MetaNews</h3>	
+					</div>
+					<div class="modal-body">
+						<div id="username-div">
+							<h4 id="username-h4">Username</h4>
+						</div>
+						<div id="userdate-div">
+							<p id="userinfo-p"></p>
+						</div>
+						<div id="deleteuser-div">
+							<button id="deleteuser-btn" class="btn btn-danger">Delete Account</button>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button id="signout-user" type="button" class="btn btn-primary">Sign Out</button>
+	                	<button id="user-close" type="button" class="btn btn-default btn-close-modal" data-dismiss="modal">Close</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>

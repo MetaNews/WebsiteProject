@@ -5,6 +5,8 @@ $(document).ready(function() {
     
     updateUserButton();
     
+    populateArticles();
+    
 	$(window).on('resize', function(){
 	    var win = $(this); //this = window
 	    screenLen = $('#top-nav').width();
@@ -153,6 +155,44 @@ $(document).ready(function() {
 	})
 	
 });
+
+function populateArticles() {
+	var apigClient = apigClientFactory.newClient();
+	var params {};
+	var body {};
+	var additionalParams {};
+	apigClient.initialgetarticlesGet(param, body, additionalParams)
+		.then(function(result) {
+			for (i in result.data.Items) {
+				document.getElementById('article-area').innerHTML += 
+					'<div class="shadow-container article-container">' +
+					'<div class="arrow-box"><div class="left-arrow">' +
+					'<a href="#"><span class="glyphicon glyphicon-chevron-left">' +
+					'</span></a></div><div class="up-down-arrows-wrapper">' +
+					'<ul class="list-group up-down-arrows"><li><a href="#" >' +
+					'<span class="glyphicon glyphicon-chevron-up"></span></a>' +
+					'<li>0</li><li><a href="#" ><span class="glyphicon glyphicon-chevron-down">' +
+					'</span></a></ul></div><div class="right-arrow">' +
+					'<a href="#"><span class="glyphicon glyphicon-chevron-right">' +
+					'</span></a></div><div class="veri-icon"><a href="#verify">' +
+					'<span class="glyphicon glyphicon-ok-sign"></span></a></div>' +
+					'<div class="ideo-icon"><a href="#ideo"><span class=""></span>' +
+					'</a></div><div class="comment-icon"><a href="#comment">' +
+					'<span class="glyphicon glyphicon-circle-arrow-left"></span>' +
+					'</a></div><div class="info-icon"><a href="#info"><span></span>' +
+					'</a></div></div><div class="article-box container-fluid">' +
+					'<div class="article-title"><a href="' + result.data.items[i].url + '">' +
+					'Article Title Not Yet Supported. </a><hr></div></div><div class="info-box">' +
+					'<ul class="list-inline block-list"><li><a href="#">' + result.data.items[i].website +
+					'</a></li><li><a href="#">' + result.data.items[i].author + '</a></li>' +
+					'<li style="float:right;"><a href="article.html">0 ' +
+					'<span class="glyphicon glyphicon-comment"></span></a>' +
+					'<li class="article-tag"><a data-toggle="modal" data-target="#tagModal">' +
+					'Clickbait</a></li><li class="article-tag"><a data-toggle="modal" ' +
+					'data-target="#tagModal">Misleading Title</a></li></ul></div></div>';
+			}
+	});
+}
 
 /**
  * Takes a parent element and clears class values within.
@@ -303,7 +343,8 @@ function forgotPasswordSuccess() {
  * @returns {void}
  */
 function forgotPasswordError(err) {
-	$('#forgotpw-warning').text(err.message);
+	console.log(err);
+	$('#forgotpw-warning').text("");
 }
 
 /**
@@ -423,7 +464,7 @@ function showForgotPW() {
 }
 
 function resizer(screenLen, elemLen) {
-    if (screenLen < 768 )
+    if (screenLen < 736 )
     {
     	//Navbar Items
     	
@@ -433,49 +474,13 @@ function resizer(screenLen, elemLen) {
     	    	
     	//Menu Items
     	
-    	$('#legit').css('display', 'block');
-    	$('#fake').css('display', 'block');
+    	$('#legit').css('display', 'none');
+    	$('#fake').css('display', 'none');
     	$('#quality-sep').css('display', 'list-item');
     	$('#left').css('display', 'block');
     	$('#right').css('display', 'block');
     	$('#neutral').css('display', 'block');
     	$('#ideo-sep').css('display', 'list-item');
-    }
-    else if (screenLen < 769 )
-	{
-    	//Navbar Items
-    	
-    	$('#advanced-search').css('display', 'table');
-    	$('#ideo-tabs').css('display', 'none');
-    	$('#quality-btns').css('display', 'none');
-    	    	
-    	//Menu Items
-    	
-    	$('#legit').css('display', 'block');
-    	$('#fake').css('display', 'block');
-    	$('#quality-sep').css('display', 'list-item');
-    	$('#left').css('display', 'block');
-    	$('#right').css('display', 'block');
-    	$('#neutral').css('display', 'block');
-    	$('#ideo-sep').css('display', 'list-item');
-	}
-    else if (screenLen < 932)
-    {
-    	//Navbar Items
-    	
-    	$('#advanced-search').css('display', 'table');
-    	$('#ideo-tabs').css('display', 'initial');
-    	$('#quality-btns').css('display', 'none');
-    	    	
-    	//Menu Items
-    	
-    	$('#legit').css('display', 'block');
-    	$('#fake').css('display', 'block');
-    	$('#quality-sep').css('display', 'list-item');
-    	$('#left').css('display', 'none');
-    	$('#right').css('display', 'none');
-    	$('#neutral').css('display', 'none');
-    	$('#ideo-sep').css('display', 'none');
     }
     else
 	{
