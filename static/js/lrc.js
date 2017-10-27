@@ -158,9 +158,9 @@ $(document).ready(function() {
 
 function populateArticles() {
 	var apigClient = apigClientFactory.newClient();
-	var params {};
-	var body {};
-	var additionalParams {};
+	var params = {};
+	var body = {};
+	var additionalParams = {};
 	apigClient.initialgetarticlesGet(param, body, additionalParams)
 		.then(function(result) {
 			for (i in result.data.Items) {
