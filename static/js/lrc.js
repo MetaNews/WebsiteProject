@@ -158,10 +158,10 @@ $(document).ready(function() {
 
 function populateArticles() {
 	var apigClient = apigClientFactory.newClient();
-	var params {};
-	var body {};
-	var additionalParams {};
-	apigClient.initialgetarticlesGet(param, body, additionalParams)
+	var params = {};
+	var body = {};
+	var additionalParams = {};
+	apigClient.initialgetarticlesGet(params, body, additionalParams)
 		.then(function(result) {
 			for (i in result.data.Items) {
 				document.getElementById('article-area').innerHTML += 
@@ -181,10 +181,10 @@ function populateArticles() {
 					'<span class="glyphicon glyphicon-circle-arrow-left"></span>' +
 					'</a></div><div class="info-icon"><a href="#info"><span></span>' +
 					'</a></div></div><div class="article-box container-fluid">' +
-					'<div class="article-title"><a href="' + result.data.items[i].url + '">' +
+					'<div class="article-title"><a href="' + result.data.Items[i].url + '">' +
 					'Article Title Not Yet Supported. </a><hr></div></div><div class="info-box">' +
-					'<ul class="list-inline block-list"><li><a href="#">' + result.data.items[i].website +
-					'</a></li><li><a href="#">' + result.data.items[i].author + '</a></li>' +
+					'<ul class="list-inline block-list"><li><a href="#">' + result.data.Items[i].website +
+					'</a></li><li><a href="#">' + result.data.Items[i].author + '</a></li>' +
 					'<li style="float:right;"><a href="article.html">0 ' +
 					'<span class="glyphicon glyphicon-comment"></span></a>' +
 					'<li class="article-tag"><a data-toggle="modal" data-target="#tagModal">' +

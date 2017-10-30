@@ -477,3 +477,22 @@ body {
 	background-color: #2e6da4 !important;
 }
 
+#bottom-bar {
+	background-color: #484848;
+	position: absolute;
+	bottom: 0px;
+	height: 70px;
+	width: 100%;
+}
+
+#bottom-bar-text {
+	position: relative;
+	bottom: -35%;
+}
+
+.bright-text {
+	text-align: center;
+	color: white;
+	font-variant: small-caps;
+}
+
